@@ -1,11 +1,8 @@
 ## Q.1 Node js is single threaded or multi-threaded? How can we make node application multi threaded?
-Node.js is single-threaded, but that doesn’t mean you can’t take advantage of multi-threading.
-
-The Node.js runtime uses a single main thread for the event loop but utilizes additional worker threads for performing tasks like I/O operations asynchronously. 
-
-This way, the main thread can continue executing JavaScript code, not having to wait for tasks like file reading or data fetching to complete. 
-
-This feature is particularly useful for tasks like CPU-bound computations, image processing, or intensive data manipulation, where parallel processing can improve performance without blocking the event loop.
+- Node.js is single-threaded, but that doesn’t mean you can’t take advantage of multi-threading. 
+- The Node.js runtime uses a single main thread for the event loop but utilizes additional worker threads for performing tasks like I/O operations asynchronously. 
+- This way, the main thread can continue executing JavaScript code, not having to wait for tasks like file reading or data fetching to complete. 
+- This feature is particularly useful for tasks like CPU-bound computations, image processing, or intensive data manipulation, where parallel processing can improve performance without blocking the event loop.
 
 **This way we can achieve multithreading in node js.**
 
