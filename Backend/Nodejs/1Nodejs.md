@@ -108,6 +108,156 @@ there are two types of middlewares.
 - used for modifying response headers, transforming response data, compressing response bodies, or logging response details.
 
 
+## Q. What is authentication and authorization? 
+**Authentication**
+- Authentication is an process to verify identity of user to access application.
+- this involves user provides credentials(username and password). so we can ensure that users are who they claim to be before granting them access to protected resources.
+- common Authentication methods involves 
+   1. username password authentication.
+   2. using JWT.
+
+**Authorization**
+- Authorization is a process of determination of user has permission to access specific resource.
+- After authentication node js application ensures that the specific resource has only allowed to authorized user.
+- This method involves role base authorization like admin/user.
+
+
+## Q. What are child processes in node js?
+Normally, NodeJS does work with one thread at a time, However, when there’s a lot of work to be done, we use the child_process module to create additional threads. These extra threads can talk to each other using a built-in messaging system.
+
+There are several ways to create child processes in Node.js:
+
+**child_process.exec:**
+ used to execute shell commands asynchronously.
+
+ ```jsx
+const { exec } = require('child_process');
+
+exec('ls -l', (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`Stderr: ${stderr}`);
+        return;
+    }
+    console.log(`Stdout: ${stdout}`);
+});
+
+exec('xdg-open https://www.youtube.com/watch?v=ZMb10M8wByE', (error, stdout, stderr) => { // for windows replace xdg-open to start
+    if (error) {
+        console.error(`Error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`Stderr: ${stderr}`);
+        return;
+    }
+    console.log(`Stdout: ${stdout}`);
+});
+
+
+/* 
+The exec method runs a command in a shell and buffers the output. 
+It's suitable for running short-lived commands that return small amounts of data.
+In this example, exec runs the ls -l command, which lists files in the current directory. 
+instated of "ls-l" if we used long lived command like find / it will gives error.
+
+*/
+ ```
+
+**child_process.execFile:**
+ Similar to child_process.exec, but it directly executes a file instead of using a shell.
+
+ ```jsx
+ const { execFile } = require('child_process');
+
+execFile('node', ['-v'], (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`Stderr: ${stderr}`);
+        return;
+    }
+    console.log(`Stdout: ${stdout}`);
+});
+
+/* 
+
+The execFile method is similar to exec, but it directly executes a file without being passed to a shell interpreter (like Bash on Unix/Linux or CMD.exe on Windows).
+It's more efficient and secure for running executable files.
+
+*/
+
+ ```
+
+
+**child_process.spawn:**
+This method spawns a new process using the provided command. It allows communication with the child process using standard input/output streams.
+
+```jsx
+const { spawn } = require('child_process');
+
+const child = spawn('ls', ['-l']);
+
+child.stdout.on('data', (data) => {
+    console.log(`Stdout: ${data}`);
+});
+
+child.stderr.on('data', (data) => {
+    console.error(`Stderr: ${data}`);
+});
+
+child.on('close', (code) => {
+    console.log(`Child process exited with code ${code}`);
+});
+
+
+/* 
+
+The spawn method launches a new process with a given command and arguments. 
+It's suitable for long-running processes and handling large outputs, as it streams the output.
+
+*/
+
+ ```
+
+
+**child_process.fork:**
+child_process.fork() is a variant of child_process.spawn() allowing communication between parent and child via send(). 
+It facilitates the isolation of compute-heavy tasks from the main event loop, but numerous child processes can impact performance due to each having its own memory.
+
+```jsx
+//childForFork.js
+process.on('message', (message) => {
+
+    for (let i = 0; i < 10000000000; i++) {
+
+    }
+    console.log('Message from parent:', message);
+    process.send({ Hi: 'Universe' });
+});
+
+// fork.js
+
+
+const { fork } = require('child_process');
+
+const child = fork('./childForFork.js');
+
+child.on('message', (message) => {
+    console.log('Message from child:', message);
+});
+
+child.send({ hello: 'world' });
+
+ ```
+
+
+These child processes can run JavaScript code or execute shell commands, and they operate independently of each other and the main Node.js process. They are useful for tasks such as parallelizing CPU-intensive operations, offloading blocking I/O operations, or running separate parts of an application in isolation.
 
 
 
