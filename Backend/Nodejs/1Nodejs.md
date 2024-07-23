@@ -260,4 +260,14 @@ child.send({ hello: 'world' });
 These child processes can run JavaScript code or execute shell commands, and they operate independently of each other and the main Node.js process. They are useful for tasks such as parallelizing CPU-intensive operations, offloading blocking I/O operations, or running separate parts of an application in isolation.
 
 
+## Q. Difference between spawn and fork
+
+|  Spawn  |  Fork  |
+|---------|--------| 
+|general purpose of this child method for launching any new process. It is suitable for executing shell commands and interact with their streams.|specialized method to creating new Node.js process. It is optimized for communication between parent and child process via inter-process-communication.
+|Running external commands, shell scripts, or any process where you need real-time data streaming.|Running separate Node.js scripts that need to communicate with the parent process, such as forking multiple instances of a Node.js application. 
+|communication is limited to standard input/output streams.|Provides an Inter-Process-Communication channel for message passing between parent and child processes.
+|Generally better for heavy I/O-bound tasks due to real-time streaming capabilities.| Better for tasks requiring close coordination between Node.js processes, such as shared state management or complex inter-process communication.
+|e.g  Real-Time Data Processing, Running a Long-Running Command.|eg  CPU-intensive tasks to separate processes to keep the main event loop responsive.
+
 
