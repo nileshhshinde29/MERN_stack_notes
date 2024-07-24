@@ -357,3 +357,5 @@ These child processes can run JavaScript code or execute shell commands, and the
 
 3. **Custom Modules**: These are modules created by developers for specific functionalities within their applications.
 
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fdiscover%2Ffree-nature-images&psig=AOvVaw3oFVz2skn0tvFUGp8ec_bn&ust=1721907962005000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCLiL-5bNv4cDFQAAAAAdAAAAABAE"/>
+
