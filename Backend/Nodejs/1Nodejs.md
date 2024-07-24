@@ -274,6 +274,7 @@ These child processes can run JavaScript code or execute shell commands, and the
 ## Q. What is different between require() and import in node js?
  |  Required  |  Import |
  | ---------- | ------- |
- | Uses CommonJS syntax. Modules are loaded synchronously. |  allows dynamic loading of modules | can be called within functions |
- | Uses ECMAScript (ES6) syntax. Modules are loaded asynchronously. |  statically analyzed at compile-time | must be used at the top level of a module |
+ | Uses CommonJS syntax. Modules are loaded synchronously.  | Uses ECMAScript (ES6) syntax. Modules are loaded asynchronously.|
+ | allows dynamic loading of modules, eg const moduleName = someCondition ? 'moduleA' : 'moduleB'; \n const module = require(moduleName); | statically analyzed at compile-time | 
+ | can be called within functions | must be used at the top level of a module |
 
