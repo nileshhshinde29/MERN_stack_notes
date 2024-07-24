@@ -278,3 +278,70 @@ These child processes can run JavaScript code or execute shell commands, and the
  | allows dynamic loading of modules, eg const moduleName = someCondition ? 'moduleA' : 'moduleB'; const module = require(moduleName); | statically analyzed at compile-time | 
  | can be called within functions | must be used at the top level of a module |
 
+
+ ## what are different types of error codes in node js ?
+ 1. **System Errors**:
+    - System errors are related to operating system-level issues and are commonly encountered during file system operations, network operations, and process management.
+    - Common system error codes include:
+        - `EACCES`: Permission denied
+        - `ENOENT`: No such file or directory
+        - `EEXIST`: File already exists
+        - `EADDRINUSE`: Address already in use
+        - `ECONNREFUSED`: Connection refused
+        - `ECONNRESET`: Connection reset by peer
+        - `ETIMEDOUT`: Operation timed out
+2. **HTTP Status Codes**:
+    - HTTP status codes are used to represent the result of HTTP requests and responses. While not specific to Node.js, HTTP status codes are commonly encountered when working with HTTP servers and clients.
+    - Common HTTP status codes include:
+        - `200`: OK
+        - `404`: Not Found
+        - `500`: Internal Server Error
+        - `403`: Forbidden
+        - `401`: Unauthorized
+        - `429`: Too Many Requests
+3. **Database Errors**:
+    - Database-related errors occur when performing database operations such as connecting to a database, executing queries, or handling transactions.
+    - Common database error codes depend on the database system being used and may include codes such as:
+        - `ER_ACCESS_DENIED_ERROR`: Access denied for user
+        - `ER_NO_SUCH_TABLE`: Table does not exist
+        - `ER_DUP_ENTRY`: Duplicate entry for key
+        - `ER_PARSE_ERROR`: SQL syntax error
+        - `ER_LOCK_WAIT_TIMEOUT`: Lock wait timeout exceeded
+4. **Custom Error Codes**:
+    - In addition to built-in error codes, developers may define custom error codes to represent application-specific error conditions.
+    - Custom error codes allow developers to define and handle errors that are specific to their application's domain or requirements.
+    - Custom error codes are typically documented in the application's documentation or error handling guidelines.
+
+
+## Q. difference between npm and yarn? 
+**NPM**
+- Npm is comes with node js installation.
+- compare to yarn npm is slow. 
+- npm installs dependencies sequentially, it will takes longer time especially when nested dependencies.
+- large community support compared to yarn.
+
+**Yarn**
+- Yarn is need to be install manually. 
+- yarn is comparatively fast.
+- Yarn install dependencies concurrently, can fetching and installing multiple dependencies simultaneously.
+- less community support compared to npm.
+
+
+## Q. tell me something about package.json file 
+- The `package.json` file is a crucial component in Node.js projects.
+- It contains metadata about the project, its dependencies, scripts, and other configuration details. 
+- It's a JSON (JavaScript Object Notation) file located at the root of the project directory.
+<br>
+
+## Q. What is express?
+- It is a web application framework for node js, that provides features for building web and mobile applications. 
+- allows handling of routing, middlewares, error handling, HTTP requests,including GET, POST, and other types.
+
+
+## Q. what are the three modules of node js?
+1. **Core Modules**: These are built-in modules that come with Node.js installation. E.g HTTP, FS, Path, Util 
+
+2. **Third-Party Modules**: These are modules created by the Node.js community and are available through the npm (Node Package Manager) registry. eg express, mongoose
+
+3. **Custom Modules**: These are modules created by developers for specific functionalities within their applications.
+
