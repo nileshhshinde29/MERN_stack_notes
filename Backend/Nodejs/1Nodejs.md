@@ -1,3 +1,4 @@
+
 ## Q. Node js is single threaded or multi-threaded? How can we make node application multi threaded?
 - Node.js is single-threaded, but that doesn’t mean you can’t take advantage of multi-threading. 
 - The Node.js runtime uses a single main thread for the event loop but utilizes additional worker threads for performing tasks like I/O operations asynchronously. 
@@ -51,6 +52,7 @@ function CPUIntensiveFunction(n) {
 
 */
 ```
+<br>
 
 ## Q. Why node js is single threaded application?
 The single thread doesn't require communication between threads. it shares the same memory that's why we can get a quicker response. 
@@ -59,6 +61,7 @@ The single thread doesn't require communication between threads. it shares the s
 - Using a single core of processor for all tasks is not good because it may block our main thread.   
 - In node js we cannot perform CPU intensive tasks like video editing, high graphics the game. 
 
+<br>
 
 ## Q. What is middleware and how it works? 
 - Middlewares are function which having access of req object and res object.
@@ -93,6 +96,7 @@ app.use((err, req, res, next) => {
 });
 
 ```
+<br>
 
 ## Q. Is middleware related with request only or I can use it with response also ?
 - NO, middlewares can be modified both request object and response object. 
@@ -107,6 +111,7 @@ there are two types of middlewares.
 - It executed after the final route handler has sent a response.
 - used for modifying response headers, transforming response data, compressing response bodies, or logging response details.
 
+<br>
 
 ## Q. What is authentication and authorization? 
 **Authentication**
@@ -121,6 +126,7 @@ there are two types of middlewares.
 - After authentication node js application ensures that the specific resource has only allowed to authorized user.
 - This method involves role base authorization like admin/user.
 
+<br>
 
 ## Q. What are child processes in node js?
 Normally, NodeJS does work with one thread at a time, However, when there’s a lot of work to be done, we use the child_process module to create additional threads. These extra threads can talk to each other using a built-in messaging system.
@@ -259,6 +265,7 @@ child.send({ hello: 'world' });
 
 These child processes can run JavaScript code or execute shell commands, and they operate independently of each other and the main Node.js process. They are useful for tasks such as parallelizing CPU-intensive operations, offloading blocking I/O operations, or running separate parts of an application in isolation.
 
+<br>
 
 ## Q. Difference between spawn and fork
 
@@ -270,6 +277,7 @@ These child processes can run JavaScript code or execute shell commands, and the
 |Generally better for heavy I/O-bound tasks due to real-time streaming capabilities.| Better for tasks requiring close coordination between Node.js processes, such as shared state management or complex inter-process communication.
 |e.g  Real-Time Data Processing, Running a Long-Running Command.|eg  CPU-intensive tasks to separate processes to keep the main event loop responsive.
 
+<br>
 
 ## Q. What is different between require() and import in node js?
  |  Required  |  Import |
@@ -278,7 +286,8 @@ These child processes can run JavaScript code or execute shell commands, and the
  | allows dynamic loading of modules, eg const moduleName = someCondition ? 'moduleA' : 'moduleB'; const module = require(moduleName); | statically analyzed at compile-time | 
  | can be called within functions | must be used at the top level of a module |
 
-
+ <br>
+ 
  ## what are different types of error codes in node js ?
  1. **System Errors**:
     - System errors are related to operating system-level issues and are commonly encountered during file system operations, network operations, and process management.
@@ -312,6 +321,7 @@ These child processes can run JavaScript code or execute shell commands, and the
     - Custom error codes allow developers to define and handle errors that are specific to their application's domain or requirements.
     - Custom error codes are typically documented in the application's documentation or error handling guidelines.
 
+<br>
 
 ## Q. difference between npm and yarn? 
 **NPM**
@@ -326,6 +336,7 @@ These child processes can run JavaScript code or execute shell commands, and the
 - Yarn install dependencies concurrently, can fetching and installing multiple dependencies simultaneously.
 - less community support compared to npm.
 
+<br>
 
 ## Q. tell me something about package.json file 
 - The `package.json` file is a crucial component in Node.js projects.
@@ -337,6 +348,7 @@ These child processes can run JavaScript code or execute shell commands, and the
 - It is a web application framework for node js, that provides features for building web and mobile applications. 
 - allows handling of routing, middlewares, error handling, HTTP requests,including GET, POST, and other types.
 
+<br>
 
 ## Q. what are the three modules of node js?
 1. **Core Modules**: These are built-in modules that come with Node.js installation. E.g HTTP, FS, Path, Util 
