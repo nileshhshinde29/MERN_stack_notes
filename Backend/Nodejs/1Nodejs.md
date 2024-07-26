@@ -420,6 +420,19 @@ To make async programming we need Libuv.
 
 # Q. event loop in node js
 
+Event loop overview:
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017212721/NWAGFGdrawio.png" alt="image" width="400" height="auto">
+
+Users send requests to performing operations.
+The requests enter the Event Queue first at the server-side.
+The Event queue passes the requests sequentially to the event loop.
+The event loop checks the nature of the request (blocking or non-blocking).
+Event Loop processes the non-blocking requests which do not require external resources and returns the responses to the corresponding clients
+For blocking requests, a single thread/workers is assigned to the process for completing the task by using external resources.
+After the completion of the operation, the request is redirected to the Event Loop which delivers the response back to the client.
+
+
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
 
 
@@ -452,14 +465,13 @@ On the other hand, if all callbacks are executed and there is no more code to ex
 
 - It is a function, that allows u to schedule a function to run on next iteration of event loop. 
 
-**Use:**
+**Use**
 
 - Handling errors and cleanups. 
 - After encountering on error, you might use process.nextTrick to allow user to handle error or cleanup resources before the event loop. 
-
  
 
-## Disadvantages: 
+ **Disadvantages**
 
 - This prevents the rest of the code in the event loop from the running. 
 
