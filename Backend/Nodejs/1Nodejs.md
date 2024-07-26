@@ -401,7 +401,8 @@ writeStream.on('finish', () => {
   console.log('File successfully compressed.');
 });
 
-<br>```
+```
+<br>
 
 ## Q. What is Libuv node js?
 Js is single threaded, blocking and synchronous language. 
@@ -418,6 +419,7 @@ To make async programming we need Libuv.
 
 
 # Q. event loop in node js
+
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
 
 
@@ -444,6 +446,42 @@ For one final time in the same loop the microtask que are executed. NextTick que
 If there are more callbacks to be processed, the loop is kept alive for one more run and the same step are repeated. 
 
 On the other hand, if all callbacks are executed and there is no more code to execute. The event loop exits. 
+
+
+# Process.nextTrick: 
+
+- It is a function, that allows u to schedule a function to run on next iteration of event loop. 
+
+**Use:**
+
+- Handling errors and cleanups. 
+- After encountering on error, you might use process.nextTrick to allow user to handle error or cleanup resources before the event loop. 
+
+ 
+
+# Disadvantages: 
+
+- This prevents the rest of the code in the event loop from the running. 
+
+- Leading to starvation situation where other tasks are delayed. Check codeevoloution 48 videos 
+
+# I/O Polling:
+
+- I/o events are pulled, and callback functions are added to the I/O que only after the I/O complete. 
+
+**Polling:** the process where the computer or controlling device waits for an external device to check for its readiness or state. 
+
+- In event loop when control enters in I/o queue its empty at first time because of polling. So, its moves to next i.e. check queue  
+
+# Check Queue: 
+
+- Microtask queues callbacks are executed in between check queue callbacks. 
+
+- When running setTimeout with delay 0 ms and setImmediate method, the order of execution can never guarantee. 
+
+# Close queue:  
+
+- Close queue callbacks are executed after all other queues callbacks in a given iteration of the event loop. 
 
 # Q. How actually event loop works with callback and microtask Queue?
 
