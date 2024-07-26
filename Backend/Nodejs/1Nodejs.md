@@ -424,13 +424,13 @@ Event loop overview:
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017212721/NWAGFGdrawio.png" alt="image" width="400" height="auto">
 
-Users send requests to performing operations.
-The requests enter the Event Queue first at the server-side.
-The Event queue passes the requests sequentially to the event loop.
-The event loop checks the nature of the request (blocking or non-blocking).
-Event Loop processes the non-blocking requests which do not require external resources and returns the responses to the corresponding clients
-For blocking requests, a single thread/workers is assigned to the process for completing the task by using external resources.
-After the completion of the operation, the request is redirected to the Event Loop which delivers the response back to the client.
+1. Users send requests to performing operations.
+2. The requests enter the Event Queue first at the server-side.
+3. The Event queue passes the requests sequentially to the event loop.
+4. The event loop checks the nature of the request (blocking or non-blocking).
+5. Event Loop processes the non-blocking requests which do not require external resources and returns the responses to the corresponding clients
+6. For blocking requests, a single thread/workers is assigned to the process for completing the task by using external resources.
+7. After the completion of the operation, the request is redirected to the Event Loop which delivers the response back to the client.
 
 
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
@@ -438,27 +438,17 @@ After the completion of the operation, the request is redirected to the Event Lo
 
 ## Execution order:
 
-Any callbacks in the microtask queue are executed. First task in the next tick queue and only then in promise queue. 
-
-All callbacks within the timer queue are executed. 
-
-Callbacks in microtask queue if present executed. Again, first nextTick que and then task in promise queue. 
-
-All callbacks within the i/o que are executed. 
-
-Callbacks in microtask que if present are executed. nextTick followed by promise que. 
-
-All callbacks within the check que are executed. 
-
-Callbacks in microtask queue if present executed. Again, first nextTick que and then task in promise queue. 
-
-All callbacks within the close que are executed. 
-
-For one final time in the same loop the microtask que are executed. NextTick que followed by promise que. 
-
-If there are more callbacks to be processed, the loop is kept alive for one more run and the same step are repeated. 
-
-On the other hand, if all callbacks are executed and there is no more code to execute. The event loop exits. 
+1. Any callbacks in the microtask queue are executed. First task in the next tick queue and only then in promise queue. 
+2. All callbacks within the timer queue are executed. 
+3. Callbacks in microtask queue if present executed. Again, first nextTick que and then task in promise queue. 
+4. All callbacks within the i/o que are executed. 
+5. Callbacks in microtask que if present are executed. nextTick followed by promise que. 
+6. All callbacks within the check que are executed. 
+7. Callbacks in microtask queue if present executed. Again, first nextTick que and then task in promise queue. 
+8. All callbacks within the close que are executed. 
+9. For one final time in the same loop the microtask que are executed. NextTick que followed by promise que. 
+10. If there are more callbacks to be processed, the loop is kept alive for one more run and the same step are repeated. 
+11. On the other hand, if all callbacks are executed and there is no more code to execute. The event loop exits. 
 
 
 ## Process.nextTrick: 
