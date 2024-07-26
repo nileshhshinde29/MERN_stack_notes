@@ -432,6 +432,36 @@ Event loop overview:
 6. For blocking requests, a single thread/workers is assigned to the process for completing the task by using external resources.
 7. After the completion of the operation, the request is redirected to the Event Loop which delivers the response back to the client.
 
+```jsx
+    const fs = require('fs');
+
+    const Asynchronous = () => {
+        console.log('1')
+
+        fs.readFile('text.txt', "utf-8", (err, result) => { //non blocking
+            console.log(result);
+        })
+
+        console.log('3');
+    }
+
+
+    const syncFunction = () => {
+        console.log('1');
+
+        console.log(fs.readFileSync('text.txt', "utf-8")); //blocking 
+
+        console.log('3');
+    }
+
+    syncFunction()
+    // AsyncFunction()
+
+    // https://medium.com/@abeythilakeudara3/nodejs-architecture-42a1d0efad8f
+
+
+```
+
 
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
 
