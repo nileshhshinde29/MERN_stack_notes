@@ -423,7 +423,7 @@ To make async programming we need Libuv.
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
 
 
-**Execution order:**
+## Execution order:
 
 Any callbacks in the microtask queue are executed. First task in the next tick queue and only then in promise queue. 
 
@@ -448,7 +448,7 @@ If there are more callbacks to be processed, the loop is kept alive for one more
 On the other hand, if all callbacks are executed and there is no more code to execute. The event loop exits. 
 
 
-# Process.nextTrick: 
+## Process.nextTrick: 
 
 - It is a function, that allows u to schedule a function to run on next iteration of event loop. 
 
@@ -459,13 +459,13 @@ On the other hand, if all callbacks are executed and there is no more code to ex
 
  
 
-# Disadvantages: 
+## Disadvantages: 
 
 - This prevents the rest of the code in the event loop from the running. 
 
 - Leading to starvation situation where other tasks are delayed. Check codeevoloution 48 videos 
 
-# I/O Polling:
+## I/O Polling:
 
 - I/o events are pulled, and callback functions are added to the I/O que only after the I/O complete. 
 
@@ -473,13 +473,13 @@ On the other hand, if all callbacks are executed and there is no more code to ex
 
 - In event loop when control enters in I/o queue its empty at first time because of polling. So, its moves to next i.e. check queue  
 
-# Check Queue: 
+## Check Queue: 
 
 - Microtask queues callbacks are executed in between check queue callbacks. 
 
 - When running setTimeout with delay 0 ms and setImmediate method, the order of execution can never guarantee. 
 
-# Close queue:  
+## Close queue:  
 
 - Close queue callbacks are executed after all other queues callbacks in a given iteration of the event loop. 
 
