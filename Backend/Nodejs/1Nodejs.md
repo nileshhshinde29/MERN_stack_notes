@@ -461,7 +461,9 @@ Event loop overview:
 
 
 ```
+<br>
 
+## Event Loop
 
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
 
