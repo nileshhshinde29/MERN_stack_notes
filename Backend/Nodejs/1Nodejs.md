@@ -381,7 +381,7 @@ fs.createReadStream('input.txt')
 ```
 <br>
 
-# Q. What is piping?
+## Q. What is piping?
 Piping is a specific method available on Node.js streams that connects the output of one stream directly to the input of another stream.
 Here's an example where we copy the contents of one file to another using piping:
 
@@ -401,14 +401,49 @@ writeStream.on('finish', () => {
   console.log('File successfully compressed.');
 });
 
-```
-# Q. What is event loop in node js?
+<br>```
+
+## Q. What is Libuv node js?
 Js is single threaded, blocking and synchronous language. 
 To make async programming we need Libuv.   
+
+<img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/libuv.jpg" alt="image" width="400" height="auto">
+
+# Libuv  
+- It is cross platform open-source library write in c language. 
+- Handle asynchronous non-blocking operations. 
+- Its run the async task using native async mechanism of operating system. 
+- If that not possible then use thread pool.  
+
 
 
 # Q. event loop in node js
 <img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
+
+
+**Execution order:**
+
+Any callbacks in the microtask queue are executed. First task in the next tick queue and only then in promise queue. 
+
+All callbacks within the timer queue are executed. 
+
+Callbacks in microtask queue if present executed. Again, first nextTick que and then task in promise queue. 
+
+All callbacks within the i/o que are executed. 
+
+Callbacks in microtask que if present are executed. nextTick followed by promise que. 
+
+All callbacks within the check que are executed. 
+
+Callbacks in microtask queue if present executed. Again, first nextTick que and then task in promise queue. 
+
+All callbacks within the close que are executed. 
+
+For one final time in the same loop the microtask que are executed. NextTick que followed by promise que. 
+
+If there are more callbacks to be processed, the loop is kept alive for one more run and the same step are repeated. 
+
+On the other hand, if all callbacks are executed and there is no more code to execute. The event loop exits. 
 
 # Q. How actually event loop works with callback and microtask Queue?
 
