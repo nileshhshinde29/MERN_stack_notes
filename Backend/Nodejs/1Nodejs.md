@@ -350,12 +350,69 @@ These child processes can run JavaScript code or execute shell commands, and the
 
 <br>
 
-## Q. what are the three modules of node js?
+## Q. What are the three modules of node js?
 1. **Core Modules**: These are built-in modules that come with Node.js installation. E.g HTTP, FS, Path, Util 
 
 2. **Third-Party Modules**: These are modules created by the Node.js community and are available through the npm (Node Package Manager) registry. eg express, mongoose
 
 3. **Custom Modules**: These are modules created by developers for specific functionalities within their applications.
+<br>
 
-<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fdiscover%2Ffree-nature-images&psig=AOvVaw3oFVz2skn0tvFUGp8ec_bn&ust=1721907962005000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCLiL-5bNv4cDFQAAAAAdAAAAABAE"/>
+## Q. What is a blocking code?
+If application has waits for some i/o operations in order to complete its further execution. Then the code which responsible for waiting is known as blocking code.
+<br>
+
+## Q. What is Chaining in Node? 
+Chaining involves connecting multiple stream operations together in a sequence.
+Here's an example where we read data from a file, transform it, and then write it to another file using chaining:
+
+```jsx
+const fs = require('fs');
+const zlib = require('zlib');
+
+// Chaining example: Read from input.txt, gzip compress, and then write to output.txt.gz
+const readStream = fs.createReadStream('input.txt');  // Readable stream from input.txt
+const gzipStream = zlib.createGzip();                  // Gzip compression stream
+const writeStream = fs.createWriteStream('output.txt.gz');  // Writable stream to output.txt.gz
+
+// Chain the streams together
+readStream.pipe(gzipStream)       // Pipe data into gzip compression stream
+  .pipe(writeStream)              // Pipe compressed data into writable stream
+  .on('finish', () => {
+    console.log('File compressed and written successfully.');
+  });
+
+```
+
+# Q. What is piping?
+Piping is a specific method available on Node.js streams that connects the output of one stream directly to the input of another stream.
+Here's an example where we copy the contents of one file to another using piping:
+
+```jsx
+const fs = require('fs');
+const zlib = require('zlib');
+
+const readStream = fs.createReadStream('input.txt');
+const gzip = zlib.createGzip();
+const writeStream = fs.createWriteStream('output.txt.gz');
+
+// Using .pipe() without chaining
+readStream.pipe(gzip);
+gzip.pipe(writeStream);
+
+writeStream.on('finish', () => {
+  console.log('File successfully compressed.');
+});
+
+```
+
+
+
+
+
+
+
+
+
+
 
