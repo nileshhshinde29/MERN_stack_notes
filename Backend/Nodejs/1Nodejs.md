@@ -370,19 +370,16 @@ Here's an example where we read data from a file, transform it, and then write i
 const fs = require('fs');
 const zlib = require('zlib');
 
-// Chaining example: Read from input.txt, gzip compress, and then write to output.txt.gz
-const readStream = fs.createReadStream('input.txt');  // Readable stream from input.txt
-const gzipStream = zlib.createGzip();                  // Gzip compression stream
-const writeStream = fs.createWriteStream('output.txt.gz');  // Writable stream to output.txt.gz
-
-// Chain the streams together
-readStream.pipe(gzipStream)       // Pipe data into gzip compression stream
-  .pipe(writeStream)              // Pipe compressed data into writable stream
-  .on('finish', () => {
-    console.log('File compressed and written successfully.');
+// Chaining method calls for streams and event handling
+fs.createReadStream('input.txt')
+  .pipe(zlib.createGzip()) // Compressing the data
+  .pipe(fs.createWriteStream('output.txt.gz')) // Writing the compressed data to a file
+  .on('finish', () => { // Handling the 'finish' event
+    console.log('File successfully compressed.');
   });
 
 ```
+<br>
 
 # Q. What is piping?
 Piping is a specific method available on Node.js streams that connects the output of one stream directly to the input of another stream.
@@ -405,6 +402,19 @@ writeStream.on('finish', () => {
 });
 
 ```
+# Q. What is event loop in node js?
+Js is single threaded, blocking and synchronous language. 
+To make async programming we need Libuv.   
+
+![plot](https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg)
+
+# Q. event loop in node js
+
+# Q. How actually event loop works with callback and microtask Queue?
+
+# Q. difference between process.nextTick() and setImmediate()
+
+
 
 
 
