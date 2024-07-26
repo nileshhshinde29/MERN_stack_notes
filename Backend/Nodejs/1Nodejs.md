@@ -406,9 +406,9 @@ writeStream.on('finish', () => {
 Js is single threaded, blocking and synchronous language. 
 To make async programming we need Libuv.   
 
-![plot](https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg)
 
 # Q. event loop in node js
+<img src="https://github.com/nileshhshinde29/MERN_stack_notes/blob/main/Accet/event-loop.jpg" alt="image" width="400" height="auto">
 
 # Q. How actually event loop works with callback and microtask Queue?
 
