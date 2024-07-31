@@ -522,6 +522,12 @@ Event loop overview:
 # Q. difference between process.nextTick() and setImmediate()
 
 
+|--- process.nextTick ---| --- setImmediate ---|
+|`process.nextTrick` is used to schedule a callback in the next iteration of loop, immediately after the current operation complete|`setImmediate()` is used to schedule a callback in the next iteration of the event loop, immediately after the I/O events are processed|
+|Callbacks scheduled with `process.nextTick()` are executed before any I/O events (like timers, network, or file system events) are processed in the event loop.|Callbacks scheduled with `setImmediate()` are executed after any pending I/O events, timers, or other callbacks in the event loop queue|
+|Because `process.nextTick()` callbacks are executed before I/O events, they are often used for tasks that need to be executed before any I/O event processing occurs, such as setting up event listeners or initializing variables.|Because `setImmediate()` callbacks are executed after I/O events, they are often used for tasks that need to be executed asynchronously but with lower priority compared to `process.nextTick()`|
+
+
 
 
 
