@@ -5,10 +5,10 @@
 6. Q. What is ODM?
 7. Q. What is ORM ?
 
-2. Q.2 What is event loop in node js?
-21. Q.15 event loop in node js
+2. Q.2 What is event loop in node js? // done
+21. Q.15 event loop in node js  // done  
 8. How actually event loop works with callback and microtask Queue?
-37. Q.31 difference between process.nextTick() and setImmediate()
+37. Q.31 difference between process.nextTick() and setImmediate() // done
 
 
 
@@ -46,24 +46,25 @@
 46. Q.39 what is event driven development in node js ?
 47. Q.40 difference between npm and yarn?  // done
 48. Q.41 tell me something about package.json file   //done
-49. Q.42 roll of Queue and Event Queue in node js ?
+49. Q.42 roll of Queue and Event Queue in node js ?  // done
 50. Q.43 what are different types of error codes in node js ? check AK // done
-51. Q.44 what is libuv in node js ?
+51. Q.44 what is libuv in node js ? // done
 
 53. Worker Thread Pool
 54. Q.45 HTTP status codes with their status code. // done 
 55. Q.46 why node js is single threaded application? // done
+
 56. Q.47 explain auth implementation using JWT
 44. suppose I haven't pass lifetime in jwt , by default how long a token will survive ? //
 
 57. Q.48 HTML template rendering (EJS) in node js
 58. Q.49 what is cron job in node js ?
 59. Q.50 what is webhook in node js ?
-60. Q.51 What are the core modules of Node,js?
-61. Q.52: What is V8?
+60. Q.51 What are the core modules of Node,js? //done
+61. Q.52: What is V8? //done
 62. Q.53 What is a blocking code? // done
-63. Q.54 What is Chaining in Node? 
-64. Q.56 What is Piping in Node?
+63. Q.54 What is Chaining in Node? // done
+64. Q.56 What is Piping in Node?   // done
 65. Q.57 what are the three modules of node js // done
 66. Q.59 Difference between cluster module, worker threads and child processes in nodejs.   //
 40. Q.34 difference between promise.all and promise.allSettled

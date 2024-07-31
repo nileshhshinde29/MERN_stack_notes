@@ -418,7 +418,7 @@ To make async programming we need Libuv.
 
 
 
-# Q. event loop in node js
+# Q. event loop in node js / Q. roll of Queue and Event Queue in node js ?
 
 Event loop overview:
 
@@ -527,6 +527,42 @@ Event loop overview:
 |`process.nextTrick` is used to schedule a callback in the next iteration of loop, immediately after the current operation complete|`setImmediate()` is used to schedule a callback in the next iteration of the event loop, immediately after the I/O events are processed|
 |Callbacks scheduled with `process.nextTick()` are executed before any I/O events (like timers, network, or file system events) are processed in the event loop.|Callbacks scheduled with `setImmediate()` are executed after any pending I/O events, timers, or other callbacks in the event loop queue|
 |Because `process.nextTick()` callbacks are executed before I/O events, they are often used for tasks that need to be executed before any I/O event processing occurs, such as setting up event listeners or initializing variables.|Because `setImmediate()` callbacks are executed after I/O events, they are often used for tasks that need to be executed asynchronously but with lower priority compared to `process.nextTick()`|
+
+
+# Q. what is V8-Engine ?
+- V8 is Google's open-source JavaScript engine. 
+- V8 is written in C++ and is used in Google Chrome, the open-source browser from Google. 
+- V8 can run standalone or can be embedded into any C++ application. 
+
+# Q. Browser vs node js 
+| Browser | Node js |
+| ---- | ---- |
+| In browser we have an access of Dom, web Apis like cookies, local storage |Node js don't have an access of window, document object provided by browser|
+| The browser don't have all nice apis that node js provides by its module like. Fs access functionality| Node js provides multiple modules like filesystem |
+| With a browser, it depends on what the users choose | With Node.js, you control the environment |
+
+# Q. 
+
+| Feature | Cluster Module | Worker Threads | Child Processes |
+| ---- | ---- | ---- | ---- |
+| Purpose |- Used to create multiple instances of a Node.js application to take advantage of multi-core systems. - Scale networked applications by distributing incoming connections across multiple workers | Used to run JavaScript code in parallel to achieve better performance for CPU-intensive tasks. Parallelize CPU-intensive tasks within a single Node.js process. |Used to run JavaScript code in parallel to achieve better performance for CPU-intensive tasks. Execute external programs, interact with system-level processes, or perform blocking I/O operations. |
+|Parallelism | Parallelizes across multiple processes (workers) on multiple CPU cores.  |Parallelizes within a single Node.js process, utilizing multiple threads. |Spawns separate Node.js processes, each running independently. |
+|Communication |Inter-process communication (IPC) between workers. |Shared memory and message passing between threads. |Inter-process communication (IPC), standard input/output, or other methods. |
+|Memory Sharing| Each cluster worker runs in a separate process, with its own memory space. |Worker threads share the same memory space with the main thread, allowing for more efficient memory usage. | Each child process runs in its own memory space, separate from the parent process. |
+|Use Cases | Web servers, API servers, or other networked applications where scaling across CPU cores is beneficial. |CPU-bound tasks such as image processing, data parsing, or cryptographic operations. |Executing external programs, interacting with system resources, or performing blocking I/O operations. |
+|Node.js Version |Available in Node.js core. |Available since Node.js v10. |Available in Node.js core. |
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
