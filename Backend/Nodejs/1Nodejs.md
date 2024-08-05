@@ -518,21 +518,21 @@ Event loop overview:
 - Close queue callbacks are executed after all other queues callbacks in a given iteration of the event loop. 
 
 # Q. How actually event loop works with callback and microtask Queue?
+<br>
 
 # Q. difference between process.nextTick() and setImmediate()
-
-
 | process.nextTick | setImmediate |
 | ---- |----|
 |`process.nextTrick` is used to schedule a callback in the next iteration of loop, immediately after the current operation complete|`setImmediate()` is used to schedule a callback in the next iteration of the event loop, immediately after the I/O events are processed|
 |Callbacks scheduled with `process.nextTick()` are executed before any I/O events (like timers, network, or file system events) are processed in the event loop.|Callbacks scheduled with `setImmediate()` are executed after any pending I/O events, timers, or other callbacks in the event loop queue|
 |Because `process.nextTick()` callbacks are executed before I/O events, they are often used for tasks that need to be executed before any I/O event processing occurs, such as setting up event listeners or initializing variables.|Because `setImmediate()` callbacks are executed after I/O events, they are often used for tasks that need to be executed asynchronously but with lower priority compared to `process.nextTick()`|
-
+<br>
 
 # Q. what is V8-Engine ?
 - V8 is Google's open-source JavaScript engine. 
 - V8 is written in C++ and is used in Google Chrome, the open-source browser from Google. 
 - V8 can run standalone or can be embedded into any C++ application. 
+<br>
 
 # Q. Browser vs node js 
 | Browser | Node js |
@@ -540,8 +540,9 @@ Event loop overview:
 | In browser we have an access of Dom, web Apis like cookies, local storage |Node js don't have an access of window, document object provided by browser|
 | The browser don't have all nice apis that node js provides by its module like. Fs access functionality| Node js provides multiple modules like filesystem |
 | With a browser, it depends on what the users choose | With Node.js, you control the environment |
+<br>
 
-# Q. 
+# Q. 66. Q.59 Difference between cluster module, worker threads and child processes in nodejs.
 
 | Feature | Cluster Module | Worker Threads | Child Processes |
 | ---- | ---- | ---- | ---- |
@@ -551,6 +552,124 @@ Event loop overview:
 |Memory Sharing| Each cluster worker runs in a separate process, with its own memory space. |Worker threads share the same memory space with the main thread, allowing for more efficient memory usage. | Each child process runs in its own memory space, separate from the parent process. |
 |Use Cases | Web servers, API servers, or other networked applications where scaling across CPU cores is beneficial. |CPU-bound tasks such as image processing, data parsing, or cryptographic operations. |Executing external programs, interacting with system resources, or performing blocking I/O operations. |
 |Node.js Version |Available in Node.js core. |Available since Node.js v10. |Available in Node.js core. |
+<br>
+
+# Q. Explain Cluster Module.
+- cluster is used to run multiple instances of node js. 
+- It distributes workload among their application threads 
+- each worker gets its own event loop, memory and v8 instance.
+- We can create worker threads as many cpu cores in machine
+
+```jsx
+
+const http = require('http')
+const cluster = require('cluster')
+const numCPUs = require('os').availableParallelism();
+
+
+if (cluster.isPrimary) {
+    cluster.fork()
+    cluster.fork()
+    console.log(numCPUs);
+
+    console.log(process.pid, "master process is running");
+}
+else {
+    console.log(process.pid, "worker process is running");
+    const server = http.createServer((req, res) => {
+        if (req.url == "/") {
+            res.writeHead(200, { "Content-Type": 'text/plain' })
+            res.end('fast server')
+        }
+        else if (req.url == '/slow') {
+            for (let i = 0; i < 10000000000; i++) { }
+            res.writeHead(200, { "Content-Type": 'text/plain' })
+            res.end('slow server')
+        }
+    })
+    server.listen(8080, () => console.log('server is running'))
+}
+
+/* 
+Example explanation:
+ If we run server normally then and if we fetch slow process first and then fast process. 
+ fast process waits until the first process gets completed.
+ But if we use cluster then fast request resolve immediately and let the slow task run to cluster.
+*/
+```
+<br>
+
+# What is ODM and ORM?
+Both ODM(Object Document Mapping) and ORM(Object Relational Mapping) are used to interact application to database. But they serve 
+
+## ODM
+- It is used for document oriented database like MongoDB.
+- ODM deals with document structures (e.g., JSON)
+- ***Mongoose*** is popular ODM for Mongodb and node.js.
+- Provides a structured schema for the documents, allows for validation.
+
+## ORM 
+- ORM is used for relational databases, such as MySQL, PostgreSQL, and SQLite.
+- ORM deals with table structures (rows and columns).
+- ***Sequelize*** is a popular ORM for Node.js, and Hibernate is a popular ORM for Java.
+- supports complex queries and relationships.
+
+# What is MVC in node js ?
+- Model view controller are design pattern commonly used for web development.
+- It separate application into parts i.e ***Model***, ***View*** and ***Controller***
+
+**1. Model**
+- It represents the data and business logic of application. 
+- It directly manages data, logic and rules of the application.
+- functionality
+    - Interacts with the database.
+    - Performs data validation.
+    - Implements business rules.
+
+```jsx 
+    const mongoose = require('mongoose');
+
+    const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    password: String
+    });
+
+    const User = mongoose.model('User', userSchema);
+
+    module.exports = User;
+ 
+```   
+**2. View**
+- It Represents the user interface of the application.
+- It displays data to the user and sends user commands to the controller.
+- e.g HTML file
+
+**3. Controller**
+- Acts as an intermediate between the Model and the View. 
+- It process input request, interact with model to fetch or update data, and render the view.
+- Example in node js (using express)
+
+```jsx
+    const express = require('express');
+    const router = express.Router();
+    const User = require('../models/user'); // Model
+
+    // Route to get a user by ID
+    router.get('/user/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.render('user', { user }); // Render View
+    } catch (error) {
+        res.status(500).send(error);
+    }
+    });
+
+    module.exports = router;
+
+```
+
+
 
 
 
