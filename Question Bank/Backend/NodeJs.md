@@ -28,46 +28,42 @@
 6. Q. What is ODM? // done
 7. Q. What is ORM ? // done
 5. Q. What is MVC in node js ? // done
+3. Q. What is the difference between services and controller in nodejs ? done
+20. Q.14 what is options method in context of restAPI? //done
+22. Q.16 What is interceptor in node js // done
+18. Q.12 difference between put and patch // done
+29. Q.23 Common nodejs module system and es6 module systems.// done
+36. Q.30 can node js work without v8 engine ? // done
+33. Q.27 what is blocking code in node js ? // done
+35. Q.29 what is assert in node js ? // done 
+23. Q.17 Decorators in javascript // done
+24. Q.18 What is function composition in javascript ? // done 
+41. Q.35 what are the globals which are provided by node itself in node application // done
+44. suppose I haven't pass lifetime in jwt , by default how long a token will survive ? // done
 
 
 
-
-
-3. Q. What is the difference between services and controller in nodejs ?
 4. Q. Upload image on s3 bucket ?
 
 11. Q.5 What is streaming ?
 30. Q.24 Streams in node js and its types
 
 12. Q.6 What is event Emitter ?
-18. Q.12 difference between put and patch
-20. Q.14 what is options method in context of restAPI?
-
-22. Q.16 What is interceptor in node js
-23. Q.17 Decorators in javascript
-24. Q.18 What is function composition in javascript ?
 25. Q.19 What are buffers? 
-29. Q.23 Common nodejs module system and es6 module systems.
 
-33. Q.27 what is blocking code in node js ?
-35. Q.29 what is assert in node js ?
-36. Q.30 can node js work without v8 engine ? 
 
-39. Q.33 what is promise.all and promise.allSettled? 
 
-41. Q.35 what are the globals which are provided by node itself in node application
 
 46. Q.39 what is event driven development in node js ?
 
 53. Worker Thread Pool
 
-56. Q.47 explain auth implementation using JWT
-44. suppose I haven't pass lifetime in jwt , by default how long a token will survive ? 
+56. Q.47 explain auth implementation using JWT 
 
-57. Q.48 HTML template rendering (EJS) in node js
+57. Q.48 HTML template rendering (EJS) in node js 
 58. Q.49 what is cron job in node js ?
 59. Q.50 what is webhook in node js ?
 61.
-40. Q.34 difference between promise.all and promise.allSettled
-38. Q.32 difference between async.parallel and async.series
-31. Q.25 difference between synchronous and asynchronous methods in file system
+40. Q.34 difference between promise.all and promise.allSettled //
+38. Q.32 difference between async.parallel and async.series  //
+31. Q.25 difference between synchronous and asynchronous methods in file system //

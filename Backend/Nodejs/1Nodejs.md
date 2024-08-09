@@ -283,10 +283,19 @@ These child processes can run JavaScript code or execute shell commands, and the
  |  Required  |  Import |
  | ---------- | ------- |
  | Uses CommonJS syntax. Modules are loaded synchronously.  | Uses ECMAScript (ES6) syntax. Modules are loaded asynchronously.|
- | allows dynamic loading of modules, eg const moduleName = someCondition ? 'moduleA' : 'moduleB'; const module = require(moduleName); | statically analyzed at compile-time | 
  | can be called within functions | must be used at the top level of a module |
+ |imported from CommonJS module, eg module.exports| need to export directly|
 
  <br>
+
+ # Q.23 Common nodejs module system and es6 module systems.
+
+|common js | es6 module|
+|-----|-----|
+| in common js used required() to import, and module.export to export | In Es6 module directly import and export used.|
+| load module synchronously | load module a synchronously|
+| good for server side technology because of server side rendering but inefficient client side technology| good for client side technology|
+|in node js mostly they are used and also used with tools thats supports node js | this can be used in both client and server side |
  
  ## what are different types of error codes in node js ?
  1. **System Errors**:
@@ -417,6 +426,21 @@ To make async programming we need Libuv.
 - If that not possible then use thread pool.  
 
 
+# Q. Thread Pool in Node.js 
+- A Thread pool is a group of worker threads separate from the main thread.
+- they are used to preform the tasks that can be slow or blocking.eg reading and righting a file.
+- the blocking code pause event loop execution which can be lead to poor performance. So by offering heavy tasks to the worker thread event loop can run smoothly.
+-  
+
+Imagine a scenario where you have a Node.js application that needs to read a large file from the file system and perform some calculations. Without the thread pool, the event loop thread would be blocked while the file is being read, leading to poor performance. But with the thread pool, the file reading task is offloaded to a worker thread, allowing the event loop thread to continue handling other requests while the file is being read. 
+
+The thread pool in Node.js is implemented using the libuv library. 
+The libuv library provides an abstraction layer over the operating system’s I/O operations.
+Node.js use it to handle various I/O operations such as file system access, network communication and more.
+
+By default, libuv uses a thread pool with 4 threads, 
+but this number can be changed by setting the UV_THREADPOOL_SIZEenvironment variable. 
+This means that you can increase or decrease the number of threads in the thread pool depending on the requirements of your application. 
 
 # Q. event loop in node js / Q. roll of Queue and Event Queue in node js ?
 
@@ -669,23 +693,241 @@ Both ODM(Object Document Mapping) and ORM(Object Relational Mapping) are used to
 
 ```
 
+# services vs controller in node js.
+**Controllers** and **Services** serve distinct roles in a Node.js application, especially when following the MVC (Model-View-Controller) pattern.
+
+#### Controllers
+- **Purpose**: Handle HTTP requests and responses.
+- **Responsibilities**:
+  - Map HTTP requests to functions.
+  - Validate incoming data.
+  - Format and send responses.
+  - Tied to specific routes.
+- **Example**:
+  ```javascript
+  // userController.js
+  const userService = require('../services/userService');
+
+  exports.getUser = async (req, res) => {
+    try {
+      const user = await userService.findUserById(req.params.id);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  <!-- };
+
+  exports.createUser = async (req, res) => {
+    try {
+      const user = await userService.createUser(req.body); -->
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
+  ```
+
+#### Services
+- **Purpose**: Contain business logic and interact with the data layer.
+- **Responsibilities**:
+  - Implement core application logic.
+  - Perform data operations (query, update, delete).
+  - Ensure reusability across different controllers.
+  - Reusable across multiple controllers.
+- **Example**:
+  ```javascript
+  // userService.js
+  const User = require('../models/User');
+
+  exports.findUserById = async (id) => {
+    try {
+      return await User.findById(id);
+    } catch (error) {
+      throw new Error('User not found');
+    }
+  };
+
+  exports.createUser = async (userData) => {
+    try {
+      const user = new User(userData);
+      return await user.save();
+    } catch (error) {
+      throw new Error('Error creating user');
+    }
+  };
+  ```
+
+  <br>
+
+  # what is options method in context of restAPI?
+
+
+- OPTIONS method is one of the HTTP methods used to provide information about the *communication options* available for a target resource. 
+- It is used to allow a client to determine which HTTP methods and headers are supported by the server for a specific resource.
+
+- When a client sends an OPTIONS request to a server, the server responds with a list of allowed methods, supported headers, and other information about the resource. This allows the client to understand what actions it can perform on that resource.
+
+Here's a breakdown of how the OPTIONS method is commonly used in a REST API:
+
+**CORS Preflight Requests:** When making cross-origin requests (requests from a different domain), browsers first send an OPTIONS request as a preflight check to determine if the actual request (e.g., GET, POST) is safe to send. The server responds with CORS headers indicating which origins, methods, and headers are allowed.
+
+**Discovery and Documentation:** APIs can use the OPTIONS method to provide metadata or documentation about the available endpoints and their capabilities. This can include information such as supported HTTP methods, allowed headers, authentication requirements, and links to further documentation.
+
+**Allowing Cross-Origin Requests:** In addition to CORS preflight requests, the OPTIONS method can be used to respond to direct OPTIONS requests from clients. By including appropriate CORS headers in the response, servers can explicitly allow cross-origin requests from specific origins.
+
+**Server Configuration:** Some servers may use the OPTIONS method to provide information about server configuration or status. For example, an OPTIONS request to a server's root URL might return information about server version, supported features, or available endpoints.
+
+<br/>
+
+# 18. Q.12 difference between put and patch
+
+| PUT |	PATCH |
+|------|------|
+|Update or replace an existing resource entirely|	Update a part of an existing resource |
+|Replaces the entire resource with the provided data |	Modifies a portion of the resource with the provided data |
+|Payload	Expects a full representation of the resource |	Expects a partial representation of the resource |
+|Updating user profile with all fields provided |	Updating user profile with only specific fields |
+
+# What is interceptor in node js.
+
+- interceptors are a middleware used in intercept or modify HTTP request/response before they processed by main logic.
+- interceptors are commonly used in framework like Express.js for tasks like authentication, error handling.
+
+- **Request Interceptors**: this intercepts incoming request before they reach to application routes or controller. 
+  eg. for Validating authentication, parsing the request body.
+
+- **Response Interceptors:** These interceptors are used to intercept response before they send to client.
+  eg.  used for tasks like adding custom headers, transforming response data. 
+
+```jsx
+
+      const express = require('express');
+      const app = express();
+
+      // Request interceptor middleware
+      app.use((req, res, next) => {
+        console.log(`Incoming request: ${req.method} ${req.url}`);
+        next(); // Pass control to the next middleware or route handler
+      });
+
+      // Response Error handling middleware 
+      app.use((err, req, res, next) => {
+          console.error(err.stack);
+          res.status(500).send('Something went wrong!');
+      });
+
+      // Route handler
+      app.get('/', (req, res) => {
+        res.send('Hello World!');
+      });
+
+      app.listen(3000, () => {
+
+      console.log('Server is running on port 3000');
+
+      });
+
+  ```
+
+
+# Decorators in javascript. 
+
+- Decorators allow you to add metadata or behavior to classes, methods, and properties. They are applied using the @decorator syntax.
+
+- Decorators help in separating concerns and improving code readability. 
+-  Decorators are not natively supported in JavaScript (as of ES2022), but they are a proposed feature as part of the ECMAScript standard, and they are commonly used with tools like Babel or TypeScript.
+
+```jsx
+
+      // Define a decorator function
+      function myDecorator(target, name, descriptor) {
+          console.log('Decorator was called on:', name);
+      }
+
+      // Apply the decorator to a class method
+      class MyClass {
+          @myDecorator
+          myMethod() {
+              console.log('Method called');
+          }
+      }
+
+      const obj = new MyClass();
+      obj.myMethod(); // Output: Method called
+```
+In this example:
+
+- The myDecorator function is a decorator that logs a message when it's applied to a method.
+- It takes three arguments: target (the class the method belongs to), name (the name of the method), and descriptor (an object containing information about the method).
+- The @myDecorator syntax applies the decorator to the myMethod of the MyClass class.
+
+As mentioned earlier, in order to use decorators like this in your JavaScript code, you typically need to use a transpiler like Babel or TypeScript, as decorators are not yet officially part of the JavaScript language standard.
 
 
 
 
+# Q.30 can node js work without v8 engine ? 
+NO, V8 is responsible for parsing and executing JavaScript code in Node.js. Without V8, Node.js would not be able to run JavaScript.
+
+#  Q.27 what is blocking code in node js ?
+blocking code is code that hold execution other code until complete execution of blocking code.
+
+
+# what is assert in node js?
+- Assert is the most elementary way to write tests. 
+- used for testing and debugging
+- console only when test fails
+
+``` jsx
+    const assert = require('assert')
+    const myFunction = (a, b) => {
+        return a + b
+
+    }
+    let b = myFunction(1, 3)
+    assert(b == 5, "hii") // it give "hii" in console only if condition fail;
+    assert.strictEqual(2, 2, 'Values are not strictly equal');
+
+```
+
+# what is function composition in javascript?
+- This is the technique of combining two or more functions together and create single function.
+- This is take output of one function and use it as the input of another function.
+- this is 
 
 
 
+```jsx
+      const f = (x) => x + 2
+      const g = (x) => x * 3
 
+      // Composing f and g
+      const composedFunction = (x) => f(g(x)) // f(g(x)) = f(3x) = 3x + 2
 
+      console.log(composedFunction(2)) // Outputs 8
+```
 
+# Q.35 what are the globals which are provided by node itself in node application
+Node. js global objects are global in nature and available in all modules.
+You don't need to include these objects in your application; rather they can be used directly.
 
+- __dirname
+- __filename
+- Console
+- Process
+- Buffer
+- setImmediate()
+- setInterval()
+- setTimeout()
+- clearImmediate()
+- clearInterval()
+- clearTimeout()
 
-
-
-
-
-
+# 44. suppose I haven't pass lifetime in jwt , by default how long a token will survive ? 
+- with out an expiredIn it will last indefinitely, which can be security risk.
+- Its highly recommended to set expiry time in jwt.
+ 
+# Worker Thread Pool.
 
 
 
