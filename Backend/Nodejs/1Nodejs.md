@@ -293,7 +293,7 @@ These child processes can run JavaScript code or execute shell commands, and the
 |common js | es6 module|
 |-----|-----|
 | in common js used required() to import, and module.export to export | In Es6 module directly import and export used.|
-| load module synchronously | load module a synchronously|
+| load module synchronously | load module asynchronously|
 | good for server side technology because of server side rendering but inefficient client side technology| good for client side technology|
 |in node js mostly they are used and also used with tools thats supports node js | this can be used in both client and server side |
  
