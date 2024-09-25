@@ -10,7 +10,6 @@ const uploadRouter = require('./routes/Aggregation/uploadRoute')
 // const AggregationDBRoute = require('./routes/aggregationRoute')
 // const sendMail = require('./middleware/mailSender')
 // const path = require('path')
-// app.use('/aggregate', AggregationDBRoute)
 
 const aggregationRoute = require('./routes/Aggregation/AggregationQuestionPracticeRoute')
 
@@ -34,18 +33,19 @@ app.use('/PDFfiles', express.static('PDFfiles')) //we can access pdf file from a
 
 /************* online mart ********************/
 
-const categoryRoute = require('./routes/categoryRoute')
-const productRoute = require('./routes/productRoute')
+// const categoryRoute = require('./routes/categoryRoute')
+// const productRoute = require('./routes/productRoute')
 const cartRoute = require('./routes/cartRoute')
 const pageRoute = require('./routes/pageRoute')
+const allQueriesRoutes = require("./routes/allQueriesRoute")
 
 
 app.use('/uploads', express.static('uploads')) //we can expose this folder to browser by this http://localhost:8080/uploads/1708066994298.pdf
-app.use('/', categoryRoute)
-app.use('/product', productRoute)
+// app.use('/', categoryRoute)
+// app.use('/product', productRoute)
 app.use('/cart', cartRoute)
 app.use('/pages', pageRoute)
-
+app.use('/allQueries', allQueriesRoutes)
 
 
 
