@@ -3,8 +3,11 @@ const AggregationQuestionPracticeSchema = require("../model/Aggregation/Aggregat
 
 const mainFunction = async (req, res) => {
 
-    findByIdAndUpdate(req, res)
+    findByIdAndRemove(req, res)
 }
+
+// find
+
 async function find(req, res) { // it return [] when empty
 
     const data = await AggregationQuestionPracticeSchema.find()
@@ -43,6 +46,9 @@ async function FindOne(req, res) { // it return {} when empty
     return res.send(data)
 }
 
+
+// create 
+
 async function insertMany(req, res) {
 
     const data = await AggregationQuestionPracticeSchema.insertMany([{
@@ -77,25 +83,62 @@ async function save(req, res) {
     return res.status(200).send(data)
 }
 
+
+// update
+
+async function update(req, res) { //deprecated
+
+    const data = await AggregationQuestionPracticeSchema.update({ "name": "Jonny" }, { $set: { name: "john", age: 0 } })
+    return res.status(200).send(data)
+}
+
 async function updateOne(req, res) { //update one is not give data object. gives "acknowledged": true,"modifiedCount": 0,
 
     const data = await AggregationQuestionPracticeSchema.updateOne({ "name": "Jonny" }, { $set: { name: "john", age: 0 } })
     return res.status(200).send(data)
 }// new true is not work with update one
 
-async function updateMany(req, res) {
+async function updateMany(req, res) {  //update one is not give data object. gives "acknowledged": true,"modifiedCount": 0,
 
     const data = await AggregationQuestionPracticeSchema.updateMany({ "name": "John" }, { $set: { name: "jonny", age: 0 } })
     return res.status(200).send(data)
-}
+} // new true is not work with update one
 
 async function findOneAndUpdate(req, res) {
-    const data = await AggregationQuestionPracticeSchema.findOneAndUpdate({ "name": "John" }, { $set: { name: "jonny", age: 0 } }, { new: true })
+    const data = await AggregationQuestionPracticeSchema.find({ "name": "John" }, { $set: { name: "jonny", age: 0 } }, { new: true })
     return res.status(200).send(data)
 }
 
 async function findByIdAndUpdate(req, res) {
     const data = await AggregationQuestionPracticeSchema.findByIdAndUpdate("65c38017a562c3857937cf49", { $set: { name: "jonny", age: 0 } }, { new: true })
+    return res.status(200).send(data)
+}
+
+
+// delete
+
+async function DeleteOne(req, res) { // {"acknowledged": true,"deletedCount": 0}
+    const data = await AggregationQuestionPracticeSchema.deleteOne({ name: "Alice" })
+    return res.status(200).send(data)
+}
+
+async function DeleteMany(req, res) { // {"acknowledged": true,"deletedCount": 0}
+    const data = await AggregationQuestionPracticeSchema.deleteMany({ name: "Alice" })
+    return res.status(200).send(data)
+}
+
+async function findByIdAndDelete(req, res) { // gives deleted object
+    const data = await AggregationQuestionPracticeSchema.findByIdAndDelete("65c38017a562c3857937cf45")
+    return res.status(200).send(data)
+}
+
+async function findOneAndRemove(req, res) { // gives removed object
+    const data = await AggregationQuestionPracticeSchema.findOneAndRemove({ name: "Nilesh" })
+    return res.status(200).send(data)
+}
+
+async function findByIdAndRemove(req, res) { // gives removed object
+    const data = await AggregationQuestionPracticeSchema.findByIdAndRemove("65c38017a562c3857937cf46")
     return res.status(200).send(data)
 }
 
@@ -113,3 +156,22 @@ async function findByIdAndUpdate(req, res) {
 // find({ age: { gt: 5, lt: 12 } });
 
 module.exports = { mainFunction }
+
+/* 
+
+## Update() vs findOneAndUpdate()
+  Update - update one or more document
+         - Update multiple documents until give multi: false.   
+
+  FindOneAndUpdate - finding a single document
+                   - Return original object until give {new true}   
+                   
+## drop() and remove()                   
+    drop()    remove specific collection from database.
+    e.g AggregationQuestionPracticeSchema.collection.drop()
+
+    remove()  deletes specific document from database.
+
+    
+
+*/
