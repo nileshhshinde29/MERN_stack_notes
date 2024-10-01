@@ -926,6 +926,11 @@ You don't need to include these objects in your application; rather they can be 
 # 44. suppose I haven't pass lifetime in jwt , by default how long a token will survive ? 
 - with out an expiredIn it will last indefinitely, which can be security risk.
 - Its highly recommended to set expiry time in jwt.
+
+# Rest API
+- It is Representational state transfer application programming Interface.
+- It is used to communicate between the applications.
+- It is uses HTTP request to perform operations like create, read, update and delete.
  
 # Worker Thread Pool.
 
