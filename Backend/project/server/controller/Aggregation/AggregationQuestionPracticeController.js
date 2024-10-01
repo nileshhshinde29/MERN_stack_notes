@@ -9,6 +9,13 @@ async function Question1() {
     return temp
 }
 
+async function myfunction() {
+    /* Find users aged 30 and above.*/
+
+    let temp = await AggregationPractice.aggregate([{ $project: { _id: 0, name: 1 } }])
+    return temp
+}
+
 
 async function Question2() {
     /* Retrieve the users sorted by age in ascending order.*/
@@ -259,15 +266,7 @@ async function Question30() {
     const temp = await AggregationPractice.aggregate([{ $match: { "hobbies": { $regex: 'r' } } }])
     return { temp }
 }
-async function myfunction() {
-    /* Find users aged 30 and above.*/
 
-    const temp = await AggregationPractice.aggregate([{
-        $addFields: { hooiescnt: { $size: "$hobbies" } }
-    }, { $group: { _id: null, sum: { $sum: "$hooiescnt" } } }
-    ])
-    return temp
-}
 async function Question30() {
     /*Group users by the total number of hobbies they have.*/
 
