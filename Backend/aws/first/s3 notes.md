@@ -1,3 +1,15 @@
+## configure s3
+````jsx
+const s3Client = new S3Client({
+    region: "ap-south-1",
+    credentials: {
+	        accessKeyId: 'YOUR_ACCESS_KEY_ID',
+        	secretAccessKey: 'YOUR_SECRET_ACCESS_KEY',
+    }
+})
+````
+
+
 ## What is s3 bucket?
 - It is stands for** simple storge service.** It is cloud storage container for storing an object.
 - we can store files, images almost anything in bucket.
