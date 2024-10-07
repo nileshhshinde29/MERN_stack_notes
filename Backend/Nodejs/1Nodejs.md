@@ -1,58 +1,59 @@
 
-## Q. Node js is single threaded or multi-threaded? How can we make node application multi threaded?
+## What is package.json? How we can create it in frontend and backend? 
+- metadata file for Node.js projects. 
+- it includes details about the project, dependencies, versions of libraries and scripts. 
+- create using npm init. 
+
+
+## what is use of http in backend? 
+- used for communication between web servers and clients. 
+- It enables the fetching of resources, like HTML pages, images, and data, from servers.   
+
+
+## What is CORS? (Cross-Origin Resource Sharing) 
+- It is in-build mechanism of browser to access data from other domain.
+- it is security feature provided by browser. 
+- restrict other websites from access resource and data without permission. 
+
+  
+## Q. What is express?
+- It is a web application framework for node js, that provides features for building web and mobile applications. 
+- allows handling of routing, middlewares, error handling, HTTP requests,including GET, POST, and other types.
+
+
+## What is Process? 
+- a process is an instance of a running program.  
+- When you execute a script in Node.js, a new process is started to manage the execution of that code.  
+- process as an independent unit that contains all the resources needed to execute a given program. 
+
+  
+
+## What is a Thread? 
+- A thread is a smaller unit of process that the CPU handles directly.  
+- It’s like a to-do list of instructions for the CPU to execute.  
+- A single process can contain multiple threads, sharing the same resources but executing independently. 
+            
+            For example, let’s say you have a Node.js application that’s handling file I/O, 
+
+            network requests, and data processing. Each of these tasks could potentially be handled by a separate thread within the same process. 
+
+## Threads in Node.js 
 - Node.js is single-threaded, but that doesn’t mean you can’t take advantage of multi-threading. 
 - The Node.js runtime uses a single main thread for the event loop but utilizes additional worker threads for performing tasks like I/O operations asynchronously. 
 - This way, the main thread can continue executing JavaScript code, not having to wait for tasks like file reading or data fetching to complete. 
-- This feature is particularly useful for tasks like CPU-bound computations, image processing, or intensive data manipulation, where parallel processing can improve performance without blocking the event loop.
 
-**This way we can achieve multithreading in node js.**
+  
 
-```jsx
-const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
+## what are worker threads: 
+- Workers are useful for performing CPU-intensive JavaScript operations; do not use them for I/O,  
+- since Node.js’s built-in mechanisms for performing operations asynchronously already treat it more efficiently than Worker threads can.   
 
-if (isMainThread) {
-    // This code runs in the main thread
-    const worker = new Worker(__filename, {
-        workerData: { input: 10 }
-    });
+  
 
-    worker.on('message', (result) => {
-        console.log('Result from worker:', result);
-    });
+## what is mongoose. 
+- Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js.  
+- It manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.  
 
-    worker.on('error', (error) => {
-        console.error('Error in worker:', error);
-    });
-} else {
-    // This code runs in the worker thread
-    const { input } = workerData;
-
-    // Simulating a CPU-bound task (CPUIntensiveFunction factorial)
-    const value = CPUIntensiveFunction(input);
-
-    // Sending the result back to the main thread
-    parentPort.postMessage(value);
-}
-
-function CPUIntensiveFunction(n) {
-    for (let i = 0; i < 10000000000; i++) {
-
-    }
-    return input
-}
-
-/* 
-- The main thread creates a new worker using the Worker constructor, passing the filename (__filename) and workerData as options. 
-  This data ({ input: 10 }) is sent to the worker thread.
-- The worker thread performs a CPU-bound task, calculating the factorial of the input number received from the main thread (input: 10 in this case).
-- Once the worker thread has completed the task, it sends the result back to the main thread using parentPort.postMessage().
-- The main thread listens for messages from the worker thread using worker.on('message', ...), and when it receives the result, it logs it to the console.
-- This way, the CPU-intensive task (calculating the factorial) is offloaded to a separate thread, allowing the main thread to remain responsive 
-  and handle other tasks concurrently.
-
-*/
-```
-<br>
 
 ## Q. Why node js is single threaded application?
 The single thread doesn't require communication between threads. it shares the same memory that's why we can get a quicker response. 
@@ -113,6 +114,47 @@ there are two types of middlewares.
 
 <br>
 
+# What is interceptor in node js.
+
+- interceptors are a middleware used in intercept or modify HTTP request/response before they processed by main logic.
+- interceptors are commonly used in framework like Express.js for tasks like authentication, error handling.
+
+- **Request Interceptors**: this intercepts incoming request before they reach to application routes or controller. 
+  eg. for Validating authentication, parsing the request body.
+
+- **Response Interceptors:** These interceptors are used to intercept response before they send to client.
+  eg.  used for tasks like adding custom headers, transforming response data. 
+
+```jsx
+
+      const express = require('express');
+      const app = express();
+
+      // Request interceptor middleware
+      app.use((req, res, next) => {
+        console.log(`Incoming request: ${req.method} ${req.url}`);
+        next(); // Pass control to the next middleware or route handler
+      });
+
+      // Response Error handling middleware 
+      app.use((err, req, res, next) => {
+          console.error(err.stack);
+          res.status(500).send('Something went wrong!');
+      });
+
+      // Route handler
+      app.get('/', (req, res) => {
+        res.send('Hello World!');
+      });
+
+      app.listen(3000, () => {
+
+      console.log('Server is running on port 3000');
+
+      });
+
+  ```
+
 ## Q. What is authentication and authorization? 
 **Authentication**
 - Authentication is an process to verify identity of user to access application.
@@ -127,6 +169,355 @@ there are two types of middlewares.
 - This method involves role base authorization like admin/user.
 
 <br>
+
+## Q. What is different between require() and import in node js?
+ |  Required  |  Import |
+ | ---------- | ------- |
+ | Uses CommonJS syntax. Modules are loaded synchronously.  | Uses ECMAScript (ES6) syntax. Modules are loaded asynchronously.|
+ | can be called within functions | must be used at the top level of a module |
+ |imported from CommonJS module, eg module.exports| need to export directly|
+
+ <br>
+
+ # Q.23 Common nodejs module system and es6 module systems.
+
+|common js | es6 module|
+|-----|-----|
+| in common js used required() to import, and module.export to export | In Es6 module directly import and export used.|
+| load module synchronously | load module asynchronously|
+| good for server side technology because of server side rendering but inefficient client side technology| good for client side technology|
+|in node js mostly they are used and also used with tools thats supports node js | this can be used in both client and server side |
+ 
+ ## what are different types of error codes in node js ?
+ 1. **System Errors**:
+    - System errors are related to operating system-level issues and are commonly encountered during file system operations, network operations, and process management.
+    - Common system error codes include:
+        - `EACCES`: Permission denied
+        - `ENOENT`: No such file or directory
+        - `EEXIST`: File already exists
+        - `EADDRINUSE`: Address already in use
+        - `ECONNREFUSED`: Connection refused
+        - `ECONNRESET`: Connection reset by peer
+        - `ETIMEDOUT`: Operation timed out
+2. **HTTP Status Codes**:
+    - HTTP status codes are used to represent the result of HTTP requests and responses. While not specific to Node.js, HTTP status codes are commonly encountered when working with HTTP servers and clients.
+    - Common HTTP status codes include:
+        - `200`: OK
+        - `404`: Not Found
+        - `500`: Internal Server Error
+        - `403`: Forbidden
+        - `401`: Unauthorized
+        - `429`: Too Many Requests
+3. **Database Errors**:
+    - Database-related errors occur when performing database operations such as connecting to a database, executing queries, or handling transactions.
+    - Common database error codes depend on the database system being used and may include codes such as:
+        - `ER_ACCESS_DENIED_ERROR`: Access denied for user
+        - `ER_NO_SUCH_TABLE`: Table does not exist
+        - `ER_DUP_ENTRY`: Duplicate entry for key
+        - `ER_PARSE_ERROR`: SQL syntax error
+        - `ER_LOCK_WAIT_TIMEOUT`: Lock wait timeout exceeded
+4. **Custom Error Codes**:
+    - In addition to built-in error codes, developers may define custom error codes to represent application-specific error conditions.
+    - Custom error codes allow developers to define and handle errors that are specific to their application's domain or requirements.
+    - Custom error codes are typically documented in the application's documentation or error handling guidelines.
+
+<br>
+
+## Q. difference between npm and yarn? 
+**NPM**
+- Npm is comes with node js installation.
+- compare to yarn npm is slow. 
+- npm installs dependencies sequentially, it will takes longer time especially when nested dependencies.
+- large community support compared to yarn.
+
+**Yarn**
+- Yarn is need to be install manually. 
+- yarn is comparatively fast.
+- Yarn install dependencies concurrently, can fetching and installing multiple dependencies simultaneously.
+- less community support compared to npm.
+
+<br>
+
+## Q. tell me something about package.json file 
+- The `package.json` file is a crucial component in Node.js projects.
+- It contains metadata about the project, its dependencies, scripts, and other configuration details. 
+- It's a JSON (JavaScript Object Notation) file located at the root of the project directory.
+<br>
+
+## Q. what is V8-Engine ?
+- V8 is Google's open-source JavaScript engine. 
+- V8 is written in C++ and is used in Google Chrome, the open-source browser from Google. 
+- V8 can run standalone or can be embedded into any C++ application. 
+<br>
+
+## Q. Browser vs node js 
+| Browser | Node js |
+| ---- | ---- |
+| In browser we have an access of Dom, web Apis like cookies, local storage |Node js don't have an access of window, document object provided by browser|
+| The browser don't have all nice apis that node js provides by its module like. Fs access functionality| Node js provides multiple modules like filesystem |
+| With a browser, it depends on what the users choose | With Node.js, you control the environment |
+<br>
+
+# What is MVC in node js ?
+- Model view controller are design pattern commonly used for web development.
+- It separate application into parts i.e ***Model***, ***View*** and ***Controller***
+
+**1. Model**
+- It represents the data and business logic of application. 
+- It directly manages data, logic and rules of the application.
+- functionality
+    - Interacts with the database.
+    - Performs data validation.
+    - Implements business rules.
+
+```jsx 
+    const mongoose = require('mongoose');
+
+    const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    password: String
+    });
+
+    const User = mongoose.model('User', userSchema);
+
+    module.exports = User;
+ 
+```   
+**2. View**
+- It Represents the user interface of the application.
+- It displays data to the user and sends user commands to the controller.
+- e.g HTML file
+
+**3. Controller**
+- Acts as an intermediate between the Model and the View. 
+- It process input request, interact with model to fetch or update data, and render the view.
+- Example in node js (using express)
+
+```jsx
+    const express = require('express');
+    const router = express.Router();
+    const User = require('../models/user'); // Model
+
+    // Route to get a user by ID
+    router.get('/user/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.render('user', { user }); // Render View
+    } catch (error) {
+        res.status(500).send(error);
+    }
+    });
+
+    module.exports = router;
+
+```
+
+# services vs controller in node js.
+**Controllers** and **Services** serve distinct roles in a Node.js application, especially when following the MVC (Model-View-Controller) pattern.
+
+#### Controllers
+- **Purpose**: Handle HTTP requests and responses.
+- **Responsibilities**:
+  - Map HTTP requests to functions.
+  - Validate incoming data.
+  - Format and send responses.
+  - Tied to specific routes.
+- **Example**:
+  ```javascript
+  // userController.js
+  const userService = require('../services/userService');
+
+  exports.getUser = async (req, res) => {
+    try {
+      const user = await userService.findUserById(req.params.id);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  <!-- };
+
+  exports.createUser = async (req, res) => {
+    try {
+      const user = await userService.createUser(req.body); -->
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
+  ```
+
+#### Services
+- **Purpose**: Contain business logic and interact with the data layer.
+- **Responsibilities**:
+  - Implement core application logic.
+  - Perform data operations (query, update, delete).
+  - Ensure reusability across different controllers.
+  - Reusable across multiple controllers.
+- **Example**:
+  ```javascript
+  // userService.js
+  const User = require('../models/User');
+
+  exports.findUserById = async (id) => {
+    try {
+      return await User.findById(id);
+    } catch (error) {
+      throw new Error('User not found');
+    }
+  };
+
+  exports.createUser = async (userData) => {
+    try {
+      const user = new User(userData);
+      return await user.save();
+    } catch (error) {
+      throw new Error('Error creating user');
+    }
+  };
+  ```
+
+  <br>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+## Q. What are the three modules of node js?
+1. **Core Modules**: These are built-in modules that come with Node.js installation. E.g HTTP, FS, Path, Util 
+
+2. **Third-Party Modules**: These are modules created by the Node.js community and are available through the npm (Node Package Manager) registry. eg express, mongoose
+
+3. **Custom Modules**: These are modules created by developers for specific functionalities within their applications.
+<br>
+
+
+## Q. What is a blocking code?
+If application has waits for some i/o operations in order to complete its further execution. Then the code which responsible for waiting is known as blocking code.
+<br>
+
+
+
+
+
+## Q. What is Chaining in Node? 
+Chaining involves connecting multiple stream operations together in a sequence.
+Here's an example where we read data from a file, transform it, and then write it to another file using chaining:
+
+```jsx
+const fs = require('fs');
+const zlib = require('zlib');
+
+// Chaining method calls for streams and event handling
+fs.createReadStream('input.txt')
+  .pipe(zlib.createGzip()) // Compressing the data
+  .pipe(fs.createWriteStream('output.txt.gz')) // Writing the compressed data to a file
+  .on('finish', () => { // Handling the 'finish' event
+    console.log('File successfully compressed.');
+  });
+
+```
+<br>
+
+## Q. What is piping?
+Piping is a specific method available on Node.js streams that connects the output of one stream directly to the input of another stream.
+Here's an example where we copy the contents of one file to another using piping:
+
+```jsx
+const fs = require('fs');
+const zlib = require('zlib');
+
+const readStream = fs.createReadStream('input.txt');
+const gzip = zlib.createGzip();
+const writeStream = fs.createWriteStream('output.txt.gz');
+
+// Using .pipe() without chaining
+readStream.pipe(gzip);
+gzip.pipe(writeStream);
+
+writeStream.on('finish', () => {
+  console.log('File successfully compressed.');
+});
+
+```
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+## Q. Node js is single threaded or multi-threaded? How can we make node application multi threaded?
+- Node.js is single-threaded, but that doesn’t mean you can’t take advantage of multi-threading. 
+- The Node.js runtime uses a single main thread for the event loop but utilizes additional worker threads for performing tasks like I/O operations asynchronously. 
+- This way, the main thread can continue executing JavaScript code, not having to wait for tasks like file reading or data fetching to complete. 
+- This feature is particularly useful for tasks like CPU-bound computations, image processing, or intensive data manipulation, where parallel processing can improve performance without blocking the event loop.
+
+**This way we can achieve multithreading in node js.**
+
+```jsx
+const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
+
+if (isMainThread) {
+    // This code runs in the main thread
+    const worker = new Worker(__filename, {
+        workerData: { input: 10 }
+    });
+
+    worker.on('message', (result) => {
+        console.log('Result from worker:', result);
+    });
+
+    worker.on('error', (error) => {
+        console.error('Error in worker:', error);
+    });
+} else {
+    // This code runs in the worker thread
+    const { input } = workerData;
+
+    // Simulating a CPU-bound task (CPUIntensiveFunction factorial)
+    const value = CPUIntensiveFunction(input);
+
+    // Sending the result back to the main thread
+    parentPort.postMessage(value);
+}
+
+function CPUIntensiveFunction(n) {
+    for (let i = 0; i < 10000000000; i++) {
+
+    }
+    return input
+}
+
+/* 
+- The main thread creates a new worker using the Worker constructor, passing the filename (__filename) and workerData as options. 
+  This data ({ input: 10 }) is sent to the worker thread.
+- The worker thread performs a CPU-bound task, calculating the factorial of the input number received from the main thread (input: 10 in this case).
+- Once the worker thread has completed the task, it sends the result back to the main thread using parentPort.postMessage().
+- The main thread listens for messages from the worker thread using worker.on('message', ...), and when it receives the result, it logs it to the console.
+- This way, the CPU-intensive task (calculating the factorial) is offloaded to a separate thread, allowing the main thread to remain responsive 
+  and handle other tasks concurrently.
+
+*/
+```
+<br>
+
+
+
+
 
 ## Q. What are child processes in node js?
 Normally, NodeJS does work with one thread at a time, However, when there’s a lot of work to be done, we use the child_process module to create additional threads. These extra threads can talk to each other using a built-in messaging system.
@@ -279,139 +670,7 @@ These child processes can run JavaScript code or execute shell commands, and the
 
 <br>
 
-## Q. What is different between require() and import in node js?
- |  Required  |  Import |
- | ---------- | ------- |
- | Uses CommonJS syntax. Modules are loaded synchronously.  | Uses ECMAScript (ES6) syntax. Modules are loaded asynchronously.|
- | can be called within functions | must be used at the top level of a module |
- |imported from CommonJS module, eg module.exports| need to export directly|
 
- <br>
-
- # Q.23 Common nodejs module system and es6 module systems.
-
-|common js | es6 module|
-|-----|-----|
-| in common js used required() to import, and module.export to export | In Es6 module directly import and export used.|
-| load module synchronously | load module asynchronously|
-| good for server side technology because of server side rendering but inefficient client side technology| good for client side technology|
-|in node js mostly they are used and also used with tools thats supports node js | this can be used in both client and server side |
- 
- ## what are different types of error codes in node js ?
- 1. **System Errors**:
-    - System errors are related to operating system-level issues and are commonly encountered during file system operations, network operations, and process management.
-    - Common system error codes include:
-        - `EACCES`: Permission denied
-        - `ENOENT`: No such file or directory
-        - `EEXIST`: File already exists
-        - `EADDRINUSE`: Address already in use
-        - `ECONNREFUSED`: Connection refused
-        - `ECONNRESET`: Connection reset by peer
-        - `ETIMEDOUT`: Operation timed out
-2. **HTTP Status Codes**:
-    - HTTP status codes are used to represent the result of HTTP requests and responses. While not specific to Node.js, HTTP status codes are commonly encountered when working with HTTP servers and clients.
-    - Common HTTP status codes include:
-        - `200`: OK
-        - `404`: Not Found
-        - `500`: Internal Server Error
-        - `403`: Forbidden
-        - `401`: Unauthorized
-        - `429`: Too Many Requests
-3. **Database Errors**:
-    - Database-related errors occur when performing database operations such as connecting to a database, executing queries, or handling transactions.
-    - Common database error codes depend on the database system being used and may include codes such as:
-        - `ER_ACCESS_DENIED_ERROR`: Access denied for user
-        - `ER_NO_SUCH_TABLE`: Table does not exist
-        - `ER_DUP_ENTRY`: Duplicate entry for key
-        - `ER_PARSE_ERROR`: SQL syntax error
-        - `ER_LOCK_WAIT_TIMEOUT`: Lock wait timeout exceeded
-4. **Custom Error Codes**:
-    - In addition to built-in error codes, developers may define custom error codes to represent application-specific error conditions.
-    - Custom error codes allow developers to define and handle errors that are specific to their application's domain or requirements.
-    - Custom error codes are typically documented in the application's documentation or error handling guidelines.
-
-<br>
-
-## Q. difference between npm and yarn? 
-**NPM**
-- Npm is comes with node js installation.
-- compare to yarn npm is slow. 
-- npm installs dependencies sequentially, it will takes longer time especially when nested dependencies.
-- large community support compared to yarn.
-
-**Yarn**
-- Yarn is need to be install manually. 
-- yarn is comparatively fast.
-- Yarn install dependencies concurrently, can fetching and installing multiple dependencies simultaneously.
-- less community support compared to npm.
-
-<br>
-
-## Q. tell me something about package.json file 
-- The `package.json` file is a crucial component in Node.js projects.
-- It contains metadata about the project, its dependencies, scripts, and other configuration details. 
-- It's a JSON (JavaScript Object Notation) file located at the root of the project directory.
-<br>
-
-## Q. What is express?
-- It is a web application framework for node js, that provides features for building web and mobile applications. 
-- allows handling of routing, middlewares, error handling, HTTP requests,including GET, POST, and other types.
-
-<br>
-
-## Q. What are the three modules of node js?
-1. **Core Modules**: These are built-in modules that come with Node.js installation. E.g HTTP, FS, Path, Util 
-
-2. **Third-Party Modules**: These are modules created by the Node.js community and are available through the npm (Node Package Manager) registry. eg express, mongoose
-
-3. **Custom Modules**: These are modules created by developers for specific functionalities within their applications.
-<br>
-
-## Q. What is a blocking code?
-If application has waits for some i/o operations in order to complete its further execution. Then the code which responsible for waiting is known as blocking code.
-<br>
-
-## Q. What is Chaining in Node? 
-Chaining involves connecting multiple stream operations together in a sequence.
-Here's an example where we read data from a file, transform it, and then write it to another file using chaining:
-
-```jsx
-const fs = require('fs');
-const zlib = require('zlib');
-
-// Chaining method calls for streams and event handling
-fs.createReadStream('input.txt')
-  .pipe(zlib.createGzip()) // Compressing the data
-  .pipe(fs.createWriteStream('output.txt.gz')) // Writing the compressed data to a file
-  .on('finish', () => { // Handling the 'finish' event
-    console.log('File successfully compressed.');
-  });
-
-```
-<br>
-
-## Q. What is piping?
-Piping is a specific method available on Node.js streams that connects the output of one stream directly to the input of another stream.
-Here's an example where we copy the contents of one file to another using piping:
-
-```jsx
-const fs = require('fs');
-const zlib = require('zlib');
-
-const readStream = fs.createReadStream('input.txt');
-const gzip = zlib.createGzip();
-const writeStream = fs.createWriteStream('output.txt.gz');
-
-// Using .pipe() without chaining
-readStream.pipe(gzip);
-gzip.pipe(writeStream);
-
-writeStream.on('finish', () => {
-  console.log('File successfully compressed.');
-});
-
-```
-<br>
 
 ## Q. What is Libuv node js?
 Js is single threaded, blocking and synchronous language. 
@@ -552,19 +811,9 @@ Event loop overview:
 |Because `process.nextTick()` callbacks are executed before I/O events, they are often used for tasks that need to be executed before any I/O event processing occurs, such as setting up event listeners or initializing variables.|Because `setImmediate()` callbacks are executed after I/O events, they are often used for tasks that need to be executed asynchronously but with lower priority compared to `process.nextTick()`|
 <br>
 
-# Q. what is V8-Engine ?
-- V8 is Google's open-source JavaScript engine. 
-- V8 is written in C++ and is used in Google Chrome, the open-source browser from Google. 
-- V8 can run standalone or can be embedded into any C++ application. 
-<br>
 
-# Q. Browser vs node js 
-| Browser | Node js |
-| ---- | ---- |
-| In browser we have an access of Dom, web Apis like cookies, local storage |Node js don't have an access of window, document object provided by browser|
-| The browser don't have all nice apis that node js provides by its module like. Fs access functionality| Node js provides multiple modules like filesystem |
-| With a browser, it depends on what the users choose | With Node.js, you control the environment |
-<br>
+
+
 
 # Q. 66. Q.59 Difference between cluster module, worker threads and child processes in nodejs.
 
@@ -638,126 +887,7 @@ Both ODM(Object Document Mapping) and ORM(Object Relational Mapping) are used to
 - ***Sequelize*** is a popular ORM for Node.js, and Hibernate is a popular ORM for Java.
 - supports complex queries and relationships.
 
-# What is MVC in node js ?
-- Model view controller are design pattern commonly used for web development.
-- It separate application into parts i.e ***Model***, ***View*** and ***Controller***
 
-**1. Model**
-- It represents the data and business logic of application. 
-- It directly manages data, logic and rules of the application.
-- functionality
-    - Interacts with the database.
-    - Performs data validation.
-    - Implements business rules.
-
-```jsx 
-    const mongoose = require('mongoose');
-
-    const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String
-    });
-
-    const User = mongoose.model('User', userSchema);
-
-    module.exports = User;
- 
-```   
-**2. View**
-- It Represents the user interface of the application.
-- It displays data to the user and sends user commands to the controller.
-- e.g HTML file
-
-**3. Controller**
-- Acts as an intermediate between the Model and the View. 
-- It process input request, interact with model to fetch or update data, and render the view.
-- Example in node js (using express)
-
-```jsx
-    const express = require('express');
-    const router = express.Router();
-    const User = require('../models/user'); // Model
-
-    // Route to get a user by ID
-    router.get('/user/:id', async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        res.render('user', { user }); // Render View
-    } catch (error) {
-        res.status(500).send(error);
-    }
-    });
-
-    module.exports = router;
-
-```
-
-# services vs controller in node js.
-**Controllers** and **Services** serve distinct roles in a Node.js application, especially when following the MVC (Model-View-Controller) pattern.
-
-#### Controllers
-- **Purpose**: Handle HTTP requests and responses.
-- **Responsibilities**:
-  - Map HTTP requests to functions.
-  - Validate incoming data.
-  - Format and send responses.
-  - Tied to specific routes.
-- **Example**:
-  ```javascript
-  // userController.js
-  const userService = require('../services/userService');
-
-  exports.getUser = async (req, res) => {
-    try {
-      const user = await userService.findUserById(req.params.id);
-      res.status(200).json(user);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  <!-- };
-
-  exports.createUser = async (req, res) => {
-    try {
-      const user = await userService.createUser(req.body); -->
-      res.status(201).json(user);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-    }
-  };
-  ```
-
-#### Services
-- **Purpose**: Contain business logic and interact with the data layer.
-- **Responsibilities**:
-  - Implement core application logic.
-  - Perform data operations (query, update, delete).
-  - Ensure reusability across different controllers.
-  - Reusable across multiple controllers.
-- **Example**:
-  ```javascript
-  // userService.js
-  const User = require('../models/User');
-
-  exports.findUserById = async (id) => {
-    try {
-      return await User.findById(id);
-    } catch (error) {
-      throw new Error('User not found');
-    }
-  };
-
-  exports.createUser = async (userData) => {
-    try {
-      const user = new User(userData);
-      return await user.save();
-    } catch (error) {
-      throw new Error('Error creating user');
-    }
-  };
-  ```
-
-  <br>
 
   # what is options method in context of restAPI?
 
@@ -788,46 +918,7 @@ Here's a breakdown of how the OPTIONS method is commonly used in a REST API:
 |Payload	Expects a full representation of the resource |	Expects a partial representation of the resource |
 |Updating user profile with all fields provided |	Updating user profile with only specific fields |
 
-# What is interceptor in node js.
 
-- interceptors are a middleware used in intercept or modify HTTP request/response before they processed by main logic.
-- interceptors are commonly used in framework like Express.js for tasks like authentication, error handling.
-
-- **Request Interceptors**: this intercepts incoming request before they reach to application routes or controller. 
-  eg. for Validating authentication, parsing the request body.
-
-- **Response Interceptors:** These interceptors are used to intercept response before they send to client.
-  eg.  used for tasks like adding custom headers, transforming response data. 
-
-```jsx
-
-      const express = require('express');
-      const app = express();
-
-      // Request interceptor middleware
-      app.use((req, res, next) => {
-        console.log(`Incoming request: ${req.method} ${req.url}`);
-        next(); // Pass control to the next middleware or route handler
-      });
-
-      // Response Error handling middleware 
-      app.use((err, req, res, next) => {
-          console.error(err.stack);
-          res.status(500).send('Something went wrong!');
-      });
-
-      // Route handler
-      app.get('/', (req, res) => {
-        res.send('Hello World!');
-      });
-
-      app.listen(3000, () => {
-
-      console.log('Server is running on port 3000');
-
-      });
-
-  ```
 
 
 # Decorators in javascript. 
@@ -933,6 +1024,15 @@ You don't need to include these objects in your application; rather they can be 
 - It is uses HTTP request to perform operations like create, read, update and delete.
  
 # Worker Thread Pool.
+
+# indexing 
+1. When we create indexing, database creates separates data structure that stores indexed field and pointer which refers to original document.
+2. When searching any document in collection we don`t need to check each document one by one. searching query search this in indexed object and this indexed object returns related document as response.
+3. Useful to get data faster.
+Types:
+  - Single Field index.  AggregationQuestionPracticeSchema.createIndexes({ name: 1 })  
+  - compound index.      AggregationQuestionPracticeSchema.createIndexes({name:1, age:-1})    
+  - Text index. //       AggregationQuestionPracticeSchema.createIndexes({ name:"text" }) 
 
 
 
