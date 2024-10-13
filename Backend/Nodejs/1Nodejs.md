@@ -1057,6 +1057,89 @@ Types:
 - Scalability: each tier can separatly scalable.
 - Maintanable: Devideing logic allows maintanability and code readablitity.
 
+## How to dynamically import module in node js.
+- Used to load module at runtime, rather than at strating of application.
+- It optimise performance by only loading at runtime.
+- If you want to conditionaly lod module then can be used.
+
+for synchronus importing use requied and for asynchronus use import.
+to use import add following in package.json
+
+```jsx
+{
+  "type": "module"
+}
+```
+
+```jsx
+// CommonJS example using require()
+
+function loadModule(moduleName) {
+  try {
+    const module = require(moduleName); // Dynamically load the module
+    console.log(`${moduleName} loaded successfully.`);
+    return module;
+  } catch (err) {
+    console.error(`Failed to load ${moduleName}:`, err);
+  }
+}
+
+// Usage:
+const userInput = 'fs'; // Dynamically set this value based on your use case
+
+const loadedModule = loadModule(userInput);
+if (loadedModule) {
+  // Using the dynamically loaded module
+  console.log(loadedModule.readdirSync('./')); // For 'fs' module, it will list files in the current directory
+}
+
+
+// CommonJS example using import()
+
+async function loadModule(moduleName) {
+  try {
+    const module = await import(moduleName); // Dynamically load the module
+    console.log(`${moduleName} loaded successfully.`);
+    return module;
+  } catch (err) {
+    console.error(`Failed to load ${moduleName}:`, err);
+  }
+}
+
+// Usage:
+const userInput = 'fs'; // Dynamically set this value
+
+loadModule(userInput)
+  .then((loadedModule) => {
+    if (loadedModule) {
+      // Using the dynamically loaded module
+      loadedModule.promises.readdir('./')
+        .then(files => console.log(files))
+        .catch(err => console.error('Error reading directory:', err));
+    }
+  });
+```
+
+## Event Driven Architecture:
+- this is used to communicate components by using events rather than calling them directly.
+- It is design pattern in which flow of programm is determined by interaction, messages from other systems or event triggers.
+
+Key Concepts of Event-driven Architecture in Node.js
+**Events:**
+- Events are actions which is called by vearious resoreces eg user interationm i/o operations.
+- This events are emmited and can listen in other part of the system
+
+**Event Emitter:** 
+- It is used to define and emit events, and attach event listeners (functions) that are triggered when an event occurs.
+
+**Non-blocking I/O:**
+- When an I/O operation (like reading from a file or making a network request) completes, an event is emitted to signal that the result is ready.
+
+**Asynchronous Callbacks/Listeners:** 
+ event listeners or callback functions are executed asynchronously when an event is emitted, allowing Node.js to handle multiple tasks efficiently without blocking.
+
+
+
 
 
 
