@@ -1034,6 +1034,30 @@ Types:
   - compound index.      AggregationQuestionPracticeSchema.createIndexes({name:1, age:-1})    
   - Text index. //       AggregationQuestionPracticeSchema.createIndexes({ name:"text" }) 
 
+## What is three tier application in Node js.
+- This devides an application into three different layer.
+- Presentation layer, application layer, data layer.
+
+**Presentation Tier**
+- This is front facing part of application ther user interact with the system.
+- It build with technologies like html css, or framewok like react js.
+- Responsibility: displaying data, taking user input, sending to backend using HTTP.
+
+**Application Tier**
+- This is middle layer which handle business logic of application.
+- This used to cummunication between the presntation layer and application layer.
+- Responsibility: implement business logic, process request, validating data, retrive or store data.
+
+**Data layer**
+- this used to manage storage and data retrival.
+- It includes database like mongodb, sql. mongoose used to connect node js to mongodb.
+- Responsibility: Provide stuctured storage, and retrival data for application tier.
+
+**usege:**
+- Scalability: each tier can separatly scalable.
+- Maintanable: Devideing logic allows maintanability and code readablitity.
+
+
 
 
 
