@@ -47,6 +47,9 @@ app.use('/cart', cartRoute)
 app.use('/pages', pageRoute)
 app.use('/allQueries', allQueriesRoutes)
 
+require('./cron-job/Schedular1')
+require('./cron-job/Schedular2')
+require('./cron-job/Schedular3')
 
 
 app.use((req, res, next) => {

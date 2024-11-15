@@ -2,7 +2,6 @@ const asyncHandler = require('express-async-handler')
 const User = require('../model/userModel')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { response } = require('../app');
 const axios = require('axios');
 const fs = require('fs')
 const { parse } = require('json2csv');
