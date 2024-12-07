@@ -63,7 +63,6 @@
 57. Q.48 HTML template rendering (EJS) in node js 
 58. Q.49 what is cron job in node js ?
 59. Q.50 what is webhook in node js ?
-61.
 40. Q.34 difference between promise.all and promise.allSettled //
 38. Q.32 difference between async.parallel and async.series  //
 31. Q.25 difference between synchronous and asynchronous methods in file system //
