@@ -1,21 +1,21 @@
 # Mongodb 
 
 ## Explain mongodb and its features.
-- It is opensource document oriented data base, It is used to store large scale data.
+- It is open-source document oriented data base, It is used to store large scale data.
 - **It is schemaless database**:
       -  Single collection can hold multiple types of document. Each document can content different no. of fields, size.
-      -  Its dont required rigid, predefined schema like reletional database.
+      -  Its don't required rigid, predefined schema like relational database.
 - Document oriented: all data stores in document format in key value pair which is more flexible than RDBMS.
-- Indexing: Indexing used to perform optimised search operations. we can get data more faster than usval.
+- Indexing: Indexing used to perform optimised search operations. we can get data more faster than usual.
 - Scalability: It can be horizontally scalable.
 - Replication: It creates multiple copies of data.
 
 ## How does Mongodb stores data ?
-- It store data in binary incoded format ie BSON.(Binary json)
-- It is designed to be lightweight and store an retrive data efficiently.
+- It store data in binary encoded format ie BSON.(Binary json)
+- It is designed to be lightweight and store an retrieve data efficiently.
 
 
-## Difference betweeen mongodb and mysql?
+## Difference between mongodb and mysql?
 
 | Aspect         | MongoDB                                       | MySQL                                      |
 |----------------|-----------------------------------------------|--------------------------------------------|
@@ -106,20 +106,20 @@ Both used for increasing scalability.
 - If primary node fails then. one of the secondary node automatically becomes a primary node.
 
 ## Sharding:
-- It devides data across multiple servers to distubute storage and workload. for horizontal scaling.
-- It is achived by devides data in the form of chunk on the basis of shad key.
+- It divides data across multiple servers to distribute storage and workload. for horizontal scaling.
+- It is achieved by divides data in the form of chunk on the basis of shad key.
 - Each shard store subset of data.
 
-##  What is meant by _id fiels in Mongodb?
+##  What is meant by _id fields in Mongodb?
 - It special field in every document, and it serves as primary key.
 - It is used to uniquely identify document.
-- Mongodb automatically ganarated this field when haven't provided.
+- Mongodb automatically generated this field when haven't provided.
 
 ## How does mongodb creates ObjectID field?
 - **Timestamp**: first 4 bytes of id is represent timestamp.
-- **Machine identifier**: next 3 bytes represents identifier of machine on which it genarated.
+- **Machine identifier**: next 3 bytes represents identifier of machine on which it generated.
 - **Process Identifier**: Next 2 bytes are represents a process itentifies who genarates objectId.
-- **Counter**: final 3 bytes represents counter vakue, which is increamented for each objectId creation.
+- **Counter**: final 3 bytes represents counter value, which is incremented for each objectId creation.
 
 ## What is the role of profiler in MongoDB ?
 - It collects all detailed information about database commands exicuting agains current monodb instance.

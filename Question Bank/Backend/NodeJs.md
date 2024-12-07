@@ -1,3 +1,50 @@
+0 docker, pdf save using multer, pdf download using handlebar.
+1.What is package.json? How we can create it in frontend and backend?
+2.Node js is multithreaded or single threaded.
+3.what is use of http in backend?
+4.What is CORS?
+5.What are access token and refresh token?    
+6.Authentication vs Authorization.       
+7.What is cluster
+8.Whats are event emitters? 
+9.Difference between get and post.
+8.what is process?
+9.what are threads / worker threads?
+10.Caching in node js
+11 Authentication and authorization difference
+12 Lookups
+13 How Mongodb creates ObjectID
+14 shallow and deep copy
+15 private routes
+
+
+Event loop and concurrency in nodejs
+- process.nextTick and setImmediate
+- what is Expressjs
+- routing using Expressjs
+- what is middleware and how to create it
+- Reactor Pattern in Node.js
+- http status codes with their use
+- why node is single threaded ?
+- what is callback function
+- promise vs callback with example
+- callback hell problem
+- async and await
+- what is mongoose
+- event emitter in nodejs
+- fork() and spawan()
+- what is libuv
+- what is passport in Nodejs
+- explain auth implementation using JWT
+- explain file module in NodeJs
+
+Q. 11 Whats are event emitters? 
+https://medium.com/developers-arena/-event-emitters-for-beginners-and-for-experts-591e3368fdd2#:~:text=EventEmitter%20is%20a%20class%20that,%20performed%20for%20the%20event.  
+
+5.What are access token and refresh token?  
+  https://stackoverflow.com/questions/27726066/jwt-refresh-token-flowhttps://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/
+
+
 47. Q.40 difference between npm and yarn?  // done
 49. Q.42 roll of Queue and Event Queue in node js ?  // done
 34. Q.28 what is different between require() and import in node js // done
