@@ -3,10 +3,11 @@
 Good morning,
 
          thank u so much for asking me about myself.
-         My name is Nilesh Shinde. I am a Software engineer. I have 4 year of experience of working with Vue js.
-         I have strong knowledge of vue js, html, css and javascript. I am also familiar with node js.
-          I have been working in angular minds company since 4 years.
-         During my time at Angular Minds, I have worked on multiple projects, like
+         My name is Nilesh Shinde. I am a Software engineer. I have 3.10 year of experience of working with react js.
+         I have strong knowledge of React js js, html, css and javascript. I am also familiar with node js.
+         I have been working with Tata technologies.
+         During my time, I have worked on multiple projects, like
+                0.Battery Digital Twin  
                 1.Data Analysis of E-commerce Websites.
                 2.Applicant Tracking System.
                 3.Online Skills Assessment Application.
@@ -16,6 +17,28 @@ Good morning,
         Thank u 🙂
 
 # Educational Background:
+
+# 0 Battery digital Twin:
+  - This application is involve an monitor and analyse vehicle battery performance.
+  - This application contains interactive dashbord to display realtime vehicle specific battery information.
+  - It provide predictive insights for maintainance and optimisation. 
+    Including packs, cell temprature, complited life cycles, remaining useful life.  
+
+   for eg. each pack is conatins 208 cell. and each vehicle conatains atlest two packs which varries as per vehicle.
+
+         The information each cell we can analys with this application. And there are several calcuations 
+         we can get other insights like remaining life cycle, curves 
+
+  It contains one sub module i.e. Range Poligoan. ( used react leaflet )
+           This can be use when you have limited battery. It give an five nearby changing stations. 
+           And suggest most suitable station by considoring traffic and road contions
+           And as name suggest Range polygon. This all station visulised directly on map and by connection all this staion it makes an polygon.   
+
+Basicaly two types of login is provided.
+- Delars login. e.g. an delear can get subsibtion of this application to see the information of vehicle that he has sold.
+- ERC. Engineering research team. Domastic research team can access all vehicle data for R&D purpose.
+
+
 
 # 1 Data Analysis of e-commerce websites:
    
@@ -58,9 +81,22 @@ Good morning,
 
 
 ## Why are you looking for a job change?
+- I have learn a lot of things in the tata technologies. I am thankfull for this experience.
+- now I want to explore wider opportunities, work on different projects and global clients, and grow my skills in new technologies.
+- I believe Infosys can provide me right platform for my career groth and long-term learning.
+
+
+old:
 - I am seeking for new challenges and opportunities for learning and professional growth. also I wanted to collaborate with new teams.
 
 **Counter ans :** Every person has there own and unique curve of leaning. And I strongly believe that we can learn something new from each person.
+
+## Why you are changing job in very less time?
+- I have been working with tata technologies. 
+- During this time I have realised my longterm carrier goals more align with infosys than
+  tata technologies.
+- I believe Infosys can provide me right platform for my career groth and long-term learning.
+
 
 ## How much rate yourself?
 - I Strongly believe that, No one is perfect in this world. There is always scope for learning something new and improve. Because of that I would like to rate myself 9 out of ten  
