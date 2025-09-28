@@ -40,6 +40,7 @@
 - What is webpack?
 - what we do for secure web application from fishing.
 - what are generator functions in javascript?
+- types of functions.
 - What are hooks?
 - What is useMemo and UseCallback?
 
