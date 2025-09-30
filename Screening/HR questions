@@ -19,10 +19,14 @@ Good morning,
 # Educational Background:
 
 # 0 Battery digital Twin:
-  - This application is involve an monitor and analyse vehicle battery performance.
-  - This application contains interactive dashbord to display realtime vehicle specific battery information.
-  - It provide predictive insights for maintainance and optimisation. 
-    Including packs, cell temprature, complited life cycles, remaining useful life.  
+         - Involves monitor and analyse vehicle battery performance.
+         - Contains interactive dashborad which display real time data. (17 thousend Cr. data daily coming)
+         - Includes information of 
+                  1) Completed Life cycle.
+                  2) Remaining Life Cycle.
+                  3) Cell Temprature.
+                  4) Driving Nature of driver.
+         - Also contains multiple line and heatmap charts to analyse. 
 
    for eg. each pack is conatins 208 cell. and each vehicle conatains atlest two packs which varries as per vehicle.
 
@@ -35,8 +39,10 @@ Good morning,
            And as name suggest Range polygon. This all station visulised directly on map and by connection all this staion it makes an polygon.   
 
 Basicaly two types of login is provided.
-- Delars login. e.g. an delear can get subsibtion of this application to see the information of vehicle that he has sold.
-- ERC. Engineering research team. Domastic research team can access all vehicle data for R&D purpose.
+- Delars login. 
+     e.g. an delear can get subsibtion of this application to see the information of vehicle that he has sold.
+- ERC.
+     Engineering research team. Domastic research team can access all vehicle data for R&D purpose.
 
 
 
