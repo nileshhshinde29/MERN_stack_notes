@@ -45,9 +45,9 @@ Plugins:[
 ]
 ```
 
-- inside the host app we can use like this.
-   -- we need to import lazy loading  
-   -- need to add <b>Suspense</b> and <b>fallback</b>
+5. inside the host app we can use like this.
+    We need to import lazy loading  
+    Need to add <b>Suspense</b> and <b>fallback</b>
 
 ```js
 import React, { Suspense } from "react";
