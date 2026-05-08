@@ -17,8 +17,8 @@
 
 2. In Child app need to add remote entry to expose this particular component.
 
-<code>
-webpack.config.js
+```js
+// webpack.config.js (Child)
 
 Plugin:[
     new ModuleFederationPlugin({
@@ -29,4 +29,21 @@ Plugin:[
                  },
             });
         ]
-</code>
+```
+
+3. In host app we need to add remotes to access remotely exposed modules.
+
+```js
+// webpack.config.js (Host)
+
+Plugin:[
+         new ModuleFederationPlugin({
+         name: "hostApp",
+
+         remotes: {
+             productApp:
+                "productApp@http://localhost:3001/remoteEntry.js",
+            },
+        });
+]
+```
