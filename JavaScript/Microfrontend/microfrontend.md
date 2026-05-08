@@ -9,9 +9,11 @@
 - if one module is failed still main app run.
 
 ## Steps:
+### Create Apps
 1. Create one main app.(Host app)
    Also create secondary apps for module.
 
+### Expose components in Child
 2. In Child app need to add remote entry to expose this particular component.
 
 ```js
@@ -27,7 +29,7 @@ Plugins:[
             });
         ]
 ```
-
+### Add remote components in Host
 3. In host app we need to add remotes to access remotely exposed modules.
 
 ```js
@@ -45,9 +47,14 @@ Plugins:[
 ]
 ```
 
-5. inside the host app we can use like this.
-    We need to import lazy loading  
-    Need to add <b>Suspense</b> and <b>fallback</b>
+### 5. Use Remote Component Inside Host App
+
+Inside the host app we can use remote component like this.
+
+We need:
+- `React.lazy()` for lazy loading
+- `Suspense`
+- `fallback` for loading state
 
 ```js
 import React, { Suspense } from "react";
