@@ -1,17 +1,14 @@
-## Micro frontend:
-
+# Micro frontend:
 - Used for breaking down large application into multiple small applications.
 - Different teams can use and deploy apps individually.
 - each team can use their own UI, can be use different technologies.
 
-### Advantages:
-
+## Advantages:
 - individually work.
 - Independent deployment.
 - if one module is failed still main app run.
 
-# Steps:
-
+## Steps:
 1. Create one main app.(Host app)
    Also create secondary apps for module.
 
