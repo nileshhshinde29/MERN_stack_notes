@@ -79,3 +79,40 @@ export default App;
 
 ```
 
+## Routing:
+
+- we have similer routing like normal app. 
+
+```js
+<Suspense fallback={<h1>Loading App...</h1>}>
+  <Routes>
+    <Route
+      path="/products/*"
+      element={<ProductApp />}
+    />
+    <Route
+      path="/cart/*"
+      element={<CartApp />}
+    />
+    <Route
+      path="/admin/*"
+      element={<AdminApp />}
+    />
+  </Routes>
+</Suspense>
+
+```
+
+## Common communication methods:
+
+- Props
+- Callback Functions
+- Custom Events
+- Shared State (Redux/Zustand)
+- URL / Query Params
+- LocalStorage / SessionStorage
+- Event Bus
+
+
+
+
